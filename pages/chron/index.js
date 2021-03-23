@@ -34,7 +34,7 @@ const chron = (props) => {
   if (display) {
     content = display.map((item, index) => {
       return (
-        <li key={index}>
+        <li key={index} className={styles.contentItems}>
           <p>{item.title}</p>
         </li>
       );
@@ -98,8 +98,8 @@ const chron = (props) => {
         </div>
         <div className={styles.monthButtons}>{year ? monthButton : null}</div>
       </section>
-      <section>
-        <ul>{content}</ul>
+      <section className={styles.contentContainer}>
+        <ul className={styles.content}>{content}</ul>
       </section>
     </Layout>
   );
