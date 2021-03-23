@@ -1,11 +1,15 @@
 import Layout from "../../Components/Layout/Layout";
 
 const postPage = (props) => {
+  const readWPM = 275;
+  const readTime = Math.round(props.post.body.length / readWPM);
   return (
     <Layout>
       <h2>{props.post.title}</h2>
       <div>{`${props.post.date.month}/${props.post.date.day}/${props.post.date.year}`}</div>
+      <div>{readTime} minute read</div>
       <p>{props.post.body}</p>
+      <p>Tags : [{`${props.post.tag}`}]</p>
     </Layout>
   );
 };

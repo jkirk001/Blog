@@ -1,6 +1,7 @@
 import Layout from "../../Components/Layout/Layout";
 import styles from "./chron.module.css";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const chron = (props) => {
   const [display, setDisplay] = useState();
@@ -35,7 +36,7 @@ const chron = (props) => {
     content = display.map((item, index) => {
       return (
         <li key={index} className={styles.contentItems}>
-          <p>{item.title}</p>
+          <Link href={`${item.id}`}>{item.title}</Link>
         </li>
       );
     });

@@ -11,13 +11,20 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
       </Head>
 
       <header className={styles.navbar}>
-        <div className={styles.logo}></div>
+        <img src="/logo2.png" />
         <div className={styles.navLinks}>
-          <Link href="/chron">Chronological</Link>
-          <Link href="/topics">Topics</Link>
+          <Link href="/chron">
+            <a>Chronological</a>
+          </Link>
+          <Link href="/topics">
+            <a>Topics</a>
+          </Link>
         </div>
       </header>
       <main className={styles.main}>{children}</main>
+      <footer className={styles.footer}>
+        <span>2021 &copy;</span>
+      </footer>
     </div>
   );
 }
