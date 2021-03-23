@@ -1,0 +1,70 @@
+.dateSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.yearButtons {
+  margin: 15px 0;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+}
+
+.yearRadio {
+  outline: none;
+  padding: 10px;
+  border: 2px solid blue;
+  background-color: lightblue;
+  border-radius: 10px;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: 0.5s;
+  width: 60px;
+  height: 50px;
+}
+.yearRadio:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 18px blue;
+}
+
+.yearRadioSelected {
+  outline: none;
+  padding: 10px;
+  border: 2px solid rgb(255, 166, 0);
+  background-color: lightblue;
+  border-radius: 10px;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: 0.5s;
+  width: 60px;
+  height: 50px;
+}
+
+.monthButton {
+  outline: none;
+
+  border: 2px solid blue;
+  background-color: lightblue;
+  border-radius: 10px;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: 0.5s;
+  width: 50px;
+  height: 40px;
+}
+.monthButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 18px blue;
+}
+.monthButtonSelected {
+  outline: none;
+
+  border: 2px solid rgb(255, 166, 0);
+  background-color: lightblue;
+  border-radius: 10px;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: 0.5s;
+  width: 50px;
+  height: 40px;
+}
