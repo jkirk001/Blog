@@ -11,19 +11,15 @@ const Search = (props) => {
     if (searchTimeout) {
       clearTimeout(searchTimeout);
     }
+    if (!props.data) return;
     const timer = setTimeout(() => {
-      fetch("http://localhost:3000/api/hello")
-        .then((res) => {
-          return res.json();
-        })
-        .then((resData) => {
-          const searchResultFinal = resData.filter((item, index) => {
-            return searchInput === item.tag;
-          });
-          setSearchResult(searchResultFinal);
-        });
-    }, 3000);
+      const searchResultFinal = props.data.filter((item, index) => {
+        return searchInput === item.tag;
+      });
+      setSearchResult(searchResultFinal);
+    }, 500);
     setSearchTimeout(timer);
+    return () => clearTimeout(timer);
   }, [searchInput]);
 
   return (
@@ -37,7 +33,6 @@ const Search = (props) => {
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
-        <button>Search</button>
       </form>
       <SearchResults results={searchResult} />
     </div>

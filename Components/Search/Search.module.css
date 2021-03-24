@@ -13,8 +13,8 @@
 .searchInput {
   outline: none;
   border: none;
-  background-color: darkgoldenrod;
-  border-bottom: 1px solid cyan;
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgb(0, 166, 255);
   border-radius: 2px;
   width: 100%;
   padding: 20px;

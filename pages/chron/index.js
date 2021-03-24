@@ -2,6 +2,8 @@ import Layout from "../../Components/Layout/Layout";
 import styles from "./chron.module.css";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import dbConnect from "../../utils/db-connect";
+import Post from "../../Models/post";
 
 const chron = (props) => {
   const [display, setDisplay] = useState();
@@ -36,7 +38,7 @@ const chron = (props) => {
     content = display.map((item, index) => {
       return (
         <li key={index} className={styles.contentItems}>
-          <Link href={`${item.id}`}>{item.title}</Link>
+          <Link href={`/${item._id}`}>{item.title}</Link>
         </li>
       );
     });
@@ -107,14 +109,14 @@ const chron = (props) => {
 };
 
 export async function getStaticProps() {
-  let data = await fetch("http://localhost:3000/api/hello");
-  let dataFinal = await data.json();
+  await dbConnect();
+  const posts = await Post.find({});
+  //stupid fix but it seems to be the one
+  const finalPosts = JSON.parse(JSON.stringify(posts));
   return {
     props: {
-      posts: dataFinal,
+      posts: finalPosts,
     },
-    revalidate: 1000,
-    notFound: false,
   };
 }
 

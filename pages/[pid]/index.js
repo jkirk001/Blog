@@ -1,4 +1,6 @@
 import Layout from "../../Components/Layout/Layout";
+import dbConnect from "../../utils/db-connect";
+import Post from "../../Models/post";
 
 const postPage = (props) => {
   const readWPM = 275;
@@ -17,11 +19,18 @@ const postPage = (props) => {
 export async function getStaticProps(context) {
   const { params } = context;
   const id = params.pid;
-  let data = await fetch("http://localhost:3000/api/hello");
-  let dataJson = await data.json();
-  const dataFinal = dataJson.filter((item, index) => {
-    return item.id === id;
+  await dbConnect();
+  const posts = await Post.find({});
+  //stupid fix but it seems to be the one
+  const finalPosts = JSON.parse(JSON.stringify(posts));
+  const dataFinal = finalPosts.filter((item, index) => {
+    return String(item._id) === String(id);
   });
+  if (dataFinal.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       post: dataFinal[0],
@@ -31,10 +40,12 @@ export async function getStaticProps(context) {
   };
 }
 export async function getStaticPaths() {
-  const data = await fetch("http://localhost:3000/api/hello");
-  const dataJson = await data.json();
-  const dynamicPaths = dataJson.map((item, index) => {
-    return { params: { pid: item.id } };
+  await dbConnect();
+  const posts = await Post.find({});
+  //stupid fix but it seems to be the one
+  const finalPosts = JSON.parse(JSON.stringify(posts));
+  const dynamicPaths = finalPosts.map((item, index) => {
+    return { params: { pid: String(item._id) } };
   });
   return {
     paths: dynamicPaths,

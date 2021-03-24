@@ -5,7 +5,7 @@
 }
 .yearButtons {
   margin: 15px 0;
-  width: 600px;
+  width: 200px;
   display: flex;
   justify-content: center;
 }
@@ -40,13 +40,17 @@
   height: 50px;
 }
 
+.monthButtons {
+  display: flex;
+  flex-wrap: wrap;
+}
 .monthButton {
   outline: none;
 
   border: 2px solid blue;
   background-color: lightblue;
   border-radius: 10px;
-  margin: 0 15px;
+  margin: 0 5px;
   cursor: pointer;
   transition: 0.5s;
   width: 50px;
