@@ -1,4 +1,4 @@
-import dbConnect from "../utils/db-connect";
+import dbConnect from "../utils/db-connect-og";
 import Post from "../Models/post";
 import Layout from "../Components/Layout/Layout";
 import Search from "../Components/Search/Search";

@@ -5,3 +5,12 @@
 .displayResults li {
   list-style: none;
 }
+
+.searchResults {
+  background: red;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.searchResult {
+  font-size: 2rem;
+}

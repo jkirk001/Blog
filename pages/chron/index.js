@@ -2,7 +2,7 @@ import Layout from "../../Components/Layout/Layout";
 import styles from "./chron.module.css";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import dbConnect from "../../utils/db-connect";
+import dbConnect from "../../utils/db-connect-og";
 import Post from "../../Models/post";
 
 const chron = (props) => {

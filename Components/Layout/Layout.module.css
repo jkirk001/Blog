@@ -18,10 +18,14 @@
 }
 .navbar {
   width: 100%;
+  max-width: 1400px;
   height: 120px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.navbar img {
+  margin-left: 10px;
 }
 .navLinks {
   width: 300px;
@@ -41,6 +45,10 @@
   align-items: center;
 }
 .footer {
-  width: 100%;
+  width: 90%;
+  max-width: 1400px;
   height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
