@@ -6,7 +6,7 @@ const SearchResults = (props) => {
   if (props.results.length) {
     results = props.results.map((item, index) => {
       return (
-        <li className={styles.searchResults} key={item.id}>
+        <li className={styles.searchResults} key={item._id}>
           <Link href={`/${item._id}`}>
             <a className={styles.searchResult}>{item.title}</a>
           </Link>

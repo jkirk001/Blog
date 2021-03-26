@@ -15,8 +15,10 @@
   margin-bottom: 2rem;
 }
 .info img {
-  max-width: 100%;
+  width: 100%;
+  max-width: 640px;
   height: auto;
+  border-radius: 10px;
 }
 .authorInfo {
   display: flex;
@@ -31,7 +33,7 @@
   width: 160px;
   border-radius: 100%;
 }
-.postmain {
+.postMain {
   width: 100%;
 }
 .postQuote {
@@ -42,6 +44,16 @@
 .postMain p {
   line-height: 170%;
   text-indent: 20px;
+}
+.postMain img {
+  width: 100%;
+  display: flex;
+  margin: 3rem 0;
+  box-shadow: 0 2px 5px grey;
+}
+
+.code {
+  margin: 3rem 0;
 }
 
 @media (max-width: 1200px) {

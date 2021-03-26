@@ -6,8 +6,8 @@ import Post from "../../Models/postTwo";
 import { CopyBlock, dracula } from "react-code-blocks";
 
 const postPageTest = (props) => {
-  const post = props.posts[0];
-  console.log(post);
+  const post = props.posts[2];
+  console.log(props);
   const readTime = 4;
 
   const display = post.body.map((item, index) => {
@@ -60,10 +60,27 @@ export async function getStaticProps() {
   const posts = await Post.find({});
   //stupid fix but it seems to be the one
   const finalPosts = JSON.parse(JSON.stringify(posts));
+  const dataFinal = finalPosts.filter((item, index) => {
+    return String(item._id) === String(id);
+  });
   return {
     props: {
-      posts: finalPosts,
+      posts: dataFinal,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  await dbConnect();
+  const posts = await Post.find({});
+  //stupid fix but it seems to be the one
+  const finalPosts = JSON.parse(JSON.stringify(posts));
+  const dynamicPaths = finalPosts.map((item, index) => {
+    return { params: { pid: String(item._id) } };
+  });
+  return {
+    paths: dynamicPaths,
+    fallback: true,
   };
 }
 

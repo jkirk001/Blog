@@ -1,0 +1,12 @@
+.topicsMain {
+  width: 90%;
+}
+.tags {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 3rem;
+}
+.tags img {
+  width: 100px;
+}

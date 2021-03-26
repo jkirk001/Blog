@@ -1,67 +1,54 @@
 import styles from "./singlePage.module.css";
 import Layout from "../../Components/Layout/Layout";
-import dbConnect from "../../utils/db-connect-og";
-import Post from "../../Models/post";
-import { CopyBlock, a11yLight, sunburst } from "react-code-blocks";
+import dbConnect from "../../utils/db-connect";
+import Post from "../../Models/postTwo";
 
-const postPage = (props) => {
-  const readWPM = 275;
-  const readTime = Math.round(props.post.body.length / readWPM);
-  const code = `
-  export async function getStaticProps(context) {
-    const { params } = context;
-    const id = params.pid;
-    await dbConnect();
-    const posts = await Post.find({});
-    //stupid fix but it seems to be the one
-    const finalPosts = JSON.parse(JSON.stringify(posts));
-    const dataFinal = finalPosts.filter((item, index) => {
-      return String(item._id) === String(id);
-    });
-    if (dataFinal.length === 0) {
-      return {
-        notFound: true,
-      };
+import { CopyBlock, dracula } from "react-code-blocks";
+
+const postPageTest = (props) => {
+  const post = props.posts;
+  console.log(props);
+  const readTime = 4;
+
+  const display = post.body.map((item, index) => {
+    if (item.type === "p") {
+      return <p key={index}>{item.content}</p>;
     }
-    return {
-      props: {
-        post: dataFinal[0],
-      },
-      revalidate: 1000,
-      notFound: false,
-    };
-  }`;
+    if (item.type === "code") {
+      return (
+        <CopyBlock
+          key={index}
+          text={item.content}
+          language={"jsx"}
+          theme={dracula}
+          codeBlock
+        />
+      );
+    }
+
+    if (item.type === "img") {
+      return <img key={index} src={`${item.content}`} />;
+    }
+  });
+
   return (
     <Layout>
       <div className={styles.singlePost}>
-        <h1 className={styles.title}>
-          {props.post.title} and more words to see the styling
-        </h1>
+        <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.info}>
-          <img src="test.jpg" />
+          <img src={post.mainImg} />
           <div className={styles.authorInfo}>
             <span>
               <img src="https://res.cloudinary.com/dxtqihvgt/image/upload/v1616627732/face_oromjs.png"></img>
             </span>
-            <span>Author: Jon</span>
+            <span>Author: Jon Evron</span>
             <span>Date: 3/22/2021</span>
             <span>{readTime} Minute Read</span>
           </div>
         </div>
         <div className={styles.postMain}>
-          <span className={styles.postQuote}>
-            "Who would have thought there would be an intro quote to the
-            article"
-          </span>
-          <p>{props.post.body}</p>
-          <CopyBlock
-            text={code}
-            language={"javascript"}
-            theme={a11yLight}
-            codeBlock
-          />
-          <p>{props.post.body}</p>
-          <p>Tags : [{`${props.post.tag}`}]</p>
+          <span className={styles.postQuote}>{post.quip}</span>
+          {display}
         </div>
       </div>
     </Layout>
@@ -78,19 +65,13 @@ export async function getStaticProps(context) {
   const dataFinal = finalPosts.filter((item, index) => {
     return String(item._id) === String(id);
   });
-  if (dataFinal.length === 0) {
-    return {
-      notFound: true,
-    };
-  }
   return {
     props: {
-      post: dataFinal[0],
+      posts: dataFinal[0],
     },
-    revalidate: 1000,
-    notFound: false,
   };
 }
+
 export async function getStaticPaths() {
   await dbConnect();
   const posts = await Post.find({});
@@ -105,4 +86,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default postPage;
+export default postPageTest;

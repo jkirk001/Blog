@@ -12,9 +12,15 @@ const Search = (props) => {
       clearTimeout(searchTimeout);
     }
     if (!props.data) return;
+    if (searchInput === "") return;
     const timer = setTimeout(() => {
       const searchResultFinal = props.data.filter((item, index) => {
-        return searchInput === item.tag;
+        let re = new RegExp(`\\b(${searchInput.toLowerCase()})\\b`);
+        console.log(re, item.title);
+        const found = item.title.toLowerCase().search(re);
+        console.log(found);
+        if (found === -1) return false;
+        return true;
       });
       setSearchResult(searchResultFinal);
     }, 500);

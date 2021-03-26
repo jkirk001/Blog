@@ -13,20 +13,30 @@ const Recent = (props) => {
     array = [{ title: "Next" }, { title: "Pingu" }, { title: "22222" }];
   }
 
+  const display = array.map((item, index) => {
+    return (
+      <Link href={`${item._id}`}>
+        <div
+          style={{
+            backgroundImage: `linear-gradient(
+              rgba(0, 0, 0, 0.5),
+              rgba(0, 0, 0, 0.5)
+            ),url(${item.mainImg})`,
+            backgroundSize: "cover",
+          }}
+          className={styles.recentArticle}
+        >
+          <span>{item.title}</span>
+          <p>{item.quip}</p>
+        </div>
+      </Link>
+    );
+  });
+
   return (
     <Fragment>
       <h2>Recent</h2>
-      <div className={styles.recent}>
-        <Link href={`${array[0]._id}`}>
-          <div className={styles.recentArticle}>{array[0].title}</div>
-        </Link>
-        <Link href={`${array[1]._id}`}>
-          <div className={styles.recentArticle}>{array[1].title}</div>
-        </Link>
-        <Link href={`${array[2]._id}`}>
-          <div className={styles.recentArticle}>{array[2].title}</div>
-        </Link>
-      </div>
+      <div className={styles.recent}>{display}</div>
     </Fragment>
   );
 };

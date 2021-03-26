@@ -23,164 +23,144 @@ async function dbConnect() {
 
 const feed = async () => {
   const item = {
-    title: "Using context to manage global state",
+    title: "Building statically rendered pages with Next",
     date: {
-      year: 2021,
-      month: 7,
-      day: 12,
+      year: 2020,
+      month: 4,
+      day: 21,
     },
-    mainImg: "test.jpg",
-    quip:
-      "You could use Redux, but for small projects there's no need to waste overhead",
-    tags: ["React", "Javascript"],
+    mainImg: "serverSide.jpg",
+    quip: "SR, ISR, CSR, SSR, so many choices!",
+    tags: ["React", "Javascript", "Next"],
     body: [
       {
         type: "p",
         content:
-          "State is an amazing tool when it comes to building a dynamic webpage. Particularly now that React hooks allow us to break our state into small manageable pieces.",
+          "While React is great, sometimes putting the burden on the user can make our pages seem unresponsive or skew our SEO optimization.",
         order: 1,
       },
       {
         type: "p",
         content:
-          "But what if you need your state to persist across your entire component tree?",
+          "So, if you’re planning to make a site with lots of HTTPRequests yet you would like the data from those calls available from the moment the server sends the page to the user, therefore allowing more precise SEO optimization and faster load times for users.",
         order: 2,
       },
       {
         type: "p",
         content:
-          "Once, we would have used a tool like Redux, but for smaller projects there’s no need to add the overhead. If you're only managing a reasonably small amount of state, lets say light-mode/dark-mode, React context is the way.",
+          "Next statically renders all pages that it can with no configuration. This post will cover how to set up a static page that requires fetched data with Next ( which with React we would otherwise do on the client, and can still be done within Next ). React also allows for Incremental Static Rendering (ISR) and Server Side Rendering (SSR) but those will be covered in another post.",
         order: 3,
       },
       {
         type: "p",
-        content: "Let’s take a look at my resume-esque webpage as an example.",
+        content:
+          "Below is an example of a normal React App fetching data and populating the page.",
         order: 4,
       },
-      { type: "img", content: "/light-dark.png", order: 5 },
+      {
+        type: "code",
+        content: `
+import React, {useEffect, useState} from "react";
+
+const Sample =(props)=> {
+    const [data, setData] = useState();
+
+    useEffect(()=>{
+        fetch("https://test.test/api")
+        .then((res)=> {
+            return res.json();
+        })
+        .then((resData)=>{
+            setData(resData);
+        })
+    }, [])
+
+    let display = <h1> ...Loading...</h1>
+
+    if (data) {
+        display = <h1>{data.title}</h1>
+    }
+
+    return (
+        <div>{display}</div>
+    )
+}
+
+export default Sample;`,
+        order: 5,
+      },
       {
         type: "p",
         content:
-          "It doesn’t seem like much, but very little is actually changing — maybe 4 or 5 CSS properties have to change to make sure the text is legible. But that’s beyond the scope of this article. To make this change, and to make sure the change is instantly available to all components, I managed the state in context. So clicking on the logo in the top left, leads to a change that instantly applies to every component (that imports the context) the page.",
+          "Now doing this is fine in most instances, but as stated before, the user has to wait as the client fetches the data and converts it to a JS object from JSON, sets it as state, then re-renders. All of this logic can be done on the server, saving resources.",
         order: 6,
       },
       {
         type: "p",
         content:
-          "In your root folder, make a folder named context and within it a file which contains your context — for the example, “context.js”.",
+          "The other issue with React pages is they send a blank page with only one predefined <head> and an empty root element. That means that search engine crawlers won’t be able to access the specifics on your page. Essentially, if you need to be found via search engine, you’re going to have a hard time.",
         order: 7,
       },
       {
-        type: "code",
-        content: `  import React, { useState, useEffect } from "react";
-
-            // Initiates the context
-            export const ModeContext = React.createContext({
-              lightMode: false,
-              switch: () => {},
-            });
-            const ModeContextProvider = (props) => {
-          
-              // Sets the state within the context
-              const [isLightMode, setLightMode] = useState(false);
-          
-              // Sets the state property LightMode to the opposite of its current state
-              const switchHandler = () => {
-                setLightMode(!isLightMode);
-              };
-            
-              return (
-                  // Sets the ModeContext which we will then wrap our App with, making it available to any component
-                <ModeContext.Provider
-                  value={{
-                    lightMode: isLightMode,
-                    switch: switchHandler,
-                  }}
-                >
-                {/*Represents the Root App component we will be wrapping with context*/}
-                  {props.children}
-                </ModeContext.Provider>
-              );
-            };
-            
-            export default ModeContextProvider;`,
+        type: "p",
+        content:
+          "Now with Next we just have to make a few modifications but we can avoid the issue entirely.",
         order: 8,
       },
       {
-        type: "p",
-        content: "Let’s take a look at my resume-esque webpage as an example.",
+        type: "code",
+        content: `import React, {useEffect, useState} from "react";
+
+        const Sample =(props)=> {
+            return (
+                <div><h1>{props.post.title}</h1></div>
+            )
+        }
+        
+        export async function getStaticProps() {
+          const data = await fetch("https://test.test/api");
+          const finalData = await data.json();
+          return {
+            props: {
+              posts: finalData,
+            },
+          };
+        }
+        
+        
+        export default Sample;
+        `,
         order: 9,
       },
       {
-        type: "code",
-        content: `
-        import React from "react";
-        import ReactDOM from "react-dom";
-        import "./index.css";
-        import App from "./App";
-        
-        // Here we import the provider from the context we just made
-        import ModeContextProvider from "./context/mode-context";
-        
-        // And in out ReactDOM.render we wrap the root component in the Provider
-        ReactDOM.render(
-          <ModeContextProvider>
-              <App />
-          </ModeContextProvider>,
-          document.getElementById("root")
-        );
-        // Eh voila, the context is now globally available to call in any component`,
+        type: "p",
+        content:
+          "The key ingredient here is 'export async function getStaticProps() {}'  . It must be typed exactly like that.",
         order: 10,
       },
       {
         type: "p",
         content:
-          "From this point on, the context can be consumed anywhere in the App. State can now be set anywhere in your component. Check below to see an example of how to call the context.",
+          "Anything within that async function is run on the server, before the page loads, so it can provide the user content instantly with no lag as it fetches data. The page will also come filled with data, rather than an empty root that is then filled on the client side. ",
         order: 11,
-      },
-      {
-        type: "code",
-        content: `
-import { useEffect } from "react";
-import "./App.css";
-import { Route, Switch } from "react-router-dom";
-import Main from "./components/Main/Main";
-
-// Here we get the useContext hook from React
-import { useContext } from "react";
-// And here we grab the context we create first in the context.js
-// which is then filled in and wrapped around the root component
-import { ModeContext } from "./context/mode-context";
-
-function App() {
-  useEffect(() => {
-    document.title = "Available";
-  }, []);
-
-  // Here we use the useContext hook and ask it bring in the context we set
-  const modeContext = useContext(ModeContext);
-
-
-  return (
-      {/* And here we use the context to see what lightMode state is set to
-          Remeber, functions can be passed this way aswell
-        eg switchHandler() is passed through as mainContext.switch */}
-    <div className={modeContext.lightMode ? "AppLight" : "App"}>
-      <Switch>
-        <Route path="/" component={Main} />
-      </Switch>
-    </div>
-  );
-}
-
-export default App;`,
-        order: 12,
       },
       {
         type: "p",
         content:
-          "And now you have working context! Funny enough Redux uses context to accomplish it's goals. And while I'm still a fairly fresh developer I see this question all the time, it seems to me that Redux is not context, although it uses context. Tools such as Redux and Redux toolkit are powerful, tested patterns for handling global state. Context is just an efficient way to move data.",
+          "And you must return your data as an object return {props: { posts: finalData, other: otherData}}",
+        order: 12,
+      },
+
+      {
+        type: "p",
+        content:
+          "Below is are 2 sample of page sources — the first React, the second Next.",
         order: 13,
+      },
+      {
+        type: "img",
+        content: "/Next-react-source.png",
+        order: 14,
       },
     ],
   };
@@ -221,7 +201,7 @@ export default App;`,
   const Post = mongoose.model("Post", postSchema);
 
   await dbConnect();
-  let finalItems = [item, item];
+  let finalItems = [item];
   Post.insertMany(finalItems)
     .then(() => console.log("Success"))
     .catch((e) => console.log("failure"));

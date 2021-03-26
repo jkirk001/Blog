@@ -1,19 +1,39 @@
 .recent {
   width: 90%;
-  height: 120px;
+  height: 100%;
 
   margin-top: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 .recentArticle {
-  width: 30%;
+  width: 90%;
   height: 100%;
   background-color: cyan;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 3px;
   transition: 0.5s;
+  margin: 20px;
+  box-shadow: 0 1px 4px black;
 }
 .recentArticle:hover {
-  box-shadow: 0 1px 8px blue;
+  box-shadow: 0 1px 8px black;
+}
+
+.recentArticle span {
+  color: white;
+  font-family: "Nunito";
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 10px;
+  display: block;
+}
+.recentArticle p {
+  color: rgb(202, 206, 210);
+  font-family: "Nunito";
+  font-size: 1.2rem;
+  padding: 10px;
+  margin-left: 10px;
+  display: block;
 }
