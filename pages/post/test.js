@@ -1,7 +1,9 @@
 import Layout from "../../Components/Layout/Layout";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Post = (props) => {
+  const router = useRouter();
   const [submitObj, setSubmitObj] = useState({
     author: "",
     title: "",
@@ -9,6 +11,16 @@ const Post = (props) => {
   });
   const [numTags, setNumTags] = useState(0);
   const [final, setFinal] = useState();
+
+  useEffect(() => {
+    if (final) {
+      router.push({
+        pathname: "/post/check",
+        query: JSON.stringify(final),
+      });
+    }
+    return;
+  }, [final]);
 
   const submitHandler = (e) => {
     console.log(e);
@@ -31,8 +43,10 @@ const Post = (props) => {
       body: almostFinal,
     };
     console.log(final);
+    setFinal(final);
   };
 
+  //switch to switch statement
   const mainInputCHangehandler = (e) => {
     if (e.target.id === "title") {
       setSubmitObj((prevState) => {
@@ -57,7 +71,7 @@ const Post = (props) => {
     setNumTags(e.target.value);
   };
 
-  //? why is this working?
+  // i guess the virtual dom sees only a few change, so it doesnt re-render items that stayw
   let displayBodyInputs = [];
 
   if (numTags) {
