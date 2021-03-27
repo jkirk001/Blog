@@ -1,3 +1,8 @@
+//! REWORK ALL OF THIS TOMORROW !!!!!!!!!
+//? Keep the submitObj
+//? CHange how the the inputs relate to state, but keep it based on userInput for numTags
+//? Fuck
+
 import Layout from "../../Components/Layout/Layout";
 import React, { useState, useEffect } from "react";
 
@@ -7,61 +12,48 @@ const Post = (props) => {
     title: "",
     quip: "",
   });
-  const [body, setBody] = useState(Array(2));
-  const [bodyInputs, setBodyInputs] = useState(1);
+  const [body, setBody] = useState([]);
+  const [bodyInputs, setBodyInputs] = useState(0);
   const [displayBodyInputs, setBI] = useState([]);
 
+  console.log(`body: ${body.length}`);
+  console.log(`bodyInputs: ${bodyInputs}`);
+  console.log(`displayBodyInputs: ${displayBodyInputs.length}`);
+  console.log("--------------------------");
+  console.log("--------------------------");
+
   useEffect(() => {
+    if (!bodyInputs) return;
     let item = (
-      <div key={bodyInputs} onChange={bodyInputHandler}>
+      <div key={bodyInputs} onChange={null}>
         <select id="type" name={bodyInputs}>
           <option value="p">paragraph</option>
           <option value="img">image</option>
           <option value="code">code</option>
         </select>
-        <input
-          id="postValue"
-          name={bodyInputs}
-          value={body[bodyInputs].content}
-          type="text"
-          onChange={bodyInputHandler}
-        />
+        <input id="postValue" name={bodyInputs} type="text" onChange={null} />
       </div>
     );
     setBI((prevState) => {
-      return [...prevState, item];
-    });
-    setBody(Array(bodyInputs));
-  }, [bodyInputs]);
+      if (prevState.length < bodyInputs) {
+        const finalItem = [...prevState];
+        for (let i = prevState.length; i < bodyInputs; i++) {
+          finalItem.push(item);
+        }
+        return finalItem;
+      }
+      if (bodyInputs < prevState.length) {
+        for (let i = bodyInputs; i < prevState.length; i++) {
+          prevState.pop();
+        }
 
-  const addInputHandler = (e) => {
-    e.preventDefault();
-    setBodyInputs((prevState) => {
-      return prevState + 1;
+        return prevState;
+      }
     });
-  };
+  }, [bodyInputs]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(submitObj);
-  };
-  const bodyInputHandler = (e, num) => {
-    if (e.target.id === "type") {
-      setBody((prevState) => {
-        let state = prevState[e.target.name];
-        state.type = e.target.value;
-        prevState[e.target.name] = state;
-        return prevState;
-      });
-    }
-    if (e.target.id === "postValue") {
-      setBody((prevState) => {
-        let state = prevState[e.target.name];
-        state.content = e.target.value;
-        prevState[e.target.name] = state;
-        return prevState;
-      });
-    }
   };
 
   const mainInputCHangehandler = (e) => {
@@ -83,6 +75,27 @@ const Post = (props) => {
         return state;
       });
     }
+  };
+
+  const numTagsHandler = (e) => {
+    const array = body;
+    if (e.target.value > array.length) {
+      for (let i = bodyInputs; i < e.target.value; i++) {
+        array.push({
+          type: "p",
+          content: "",
+        });
+      }
+    }
+
+    if (e.target.value < array.length) {
+      for (let i = e.target.value; i > bodyInputs; i--) {
+        array.pop();
+      }
+    }
+
+    setBody(array);
+    setBodyInputs(e.target.value);
   };
   return (
     <Layout>
@@ -114,10 +127,15 @@ const Post = (props) => {
             value={submitObj.quip}
             onChange={mainInputCHangehandler}
           ></input>
+
+          <div>
+            <label htmlFor="numTags">How many Tags?</label>
+            <input id="numTags" type="number" onChange={numTagsHandler}></input>
+          </div>
+
           <div>{displayBodyInputs}</div>
-          <button>Submit</button>
+          <button>Submit Form</button>
         </form>
-        <button onClick={addInputHandler}>lol +</button>
       </div>
     </Layout>
   );
