@@ -27,6 +27,10 @@ const chron = (props) => {
   }, [year, month]);
 
   const yearHandler = (e) => {
+    if (month) {
+      setMonth();
+      setYear(e.target.id);
+    }
     setYear(e.target.id);
   };
   const monthHandler = (e) => {
