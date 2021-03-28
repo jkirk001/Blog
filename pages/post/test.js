@@ -1,8 +1,10 @@
 import Layout from "../../Components/Layout/Layout";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ModeContext } from "../../Context/context";
 import { useRouter } from "next/router";
 
 const Post = (props) => {
+  const mainContext = useContext(ModeContext);
   const router = useRouter();
   const [submitObj, setSubmitObj] = useState({
     author: "",
@@ -15,9 +17,9 @@ const Post = (props) => {
 
   useEffect(() => {
     if (final) {
+      mainContext.submitDataSet(final);
       router.push({
         pathname: "/post/check",
-        query: JSON.stringify(final),
       });
     }
     return;
@@ -96,13 +98,17 @@ const Post = (props) => {
   if (numTags) {
     for (let i = 0; i < numTags; i++) {
       displayBodyInputs.push(
-        <div>
+        <div style={{ width: "700px" }}>
           <select>
             <option value="p">p</option>
             <option value="img">img</option>
             <option value="code">code</option>
           </select>
-          <input id={`bi${i}`} type="text" />
+          <textarea
+            style={{ minWidth: "700px", maxWidth: "700px" }}
+            id={`bi${i}`}
+            type="text"
+          />
         </div>
       );
     }

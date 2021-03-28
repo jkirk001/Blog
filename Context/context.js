@@ -3,9 +3,16 @@ import React, { useState, useEffect } from "react";
 export const ModeContext = React.createContext({
   lightMode: false,
   switch: () => {},
+  submitData: {},
+  submitDataSet: () => {},
 });
 const ModeContextProvider = (props) => {
   const [isLightMode, setLightMode] = useState(false);
+  const [submitData, setSubmitData] = useState({});
+
+  const submitDataHandler = (data) => {
+    setSubmitData(data);
+  };
 
   const switchHandler = () => {
     setLightMode(!isLightMode);
@@ -16,6 +23,8 @@ const ModeContextProvider = (props) => {
       value={{
         lightMode: isLightMode,
         switch: switchHandler,
+        submitDataSet: submitDataHandler,
+        submitData: submitData,
       }}
     >
       {props.children}

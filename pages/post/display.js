@@ -59,7 +59,7 @@ export async function getStaticProps() {
   const finalPosts = JSON.parse(JSON.stringify(posts));
   return {
     props: {
-      posts: finalPosts[2],
+      posts: finalPosts[5],
     },
   };
 }

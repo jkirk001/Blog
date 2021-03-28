@@ -1,16 +1,18 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Layout from "../../Components/Layout/Layout";
 import styles from "./singlePage.module.css";
 import { CopyBlock, dracula } from "react-code-blocks";
+import { ModeContext } from "../../Context/context";
 
 function Check() {
+  const mainContext = useContext(ModeContext);
   const [submit, setSubmit] = useState();
-  const router = useRouter();
 
   useEffect(() => {
-    const nearlyFinal = Object.keys(router.query);
-    const data = JSON.parse(nearlyFinal[0]);
+    console.log(mainContext.submitData);
+    const data = mainContext.submitData;
+
     if (data.author === "jon") {
       data.author = { name: "Jon", date: new Date(Date.now()), read: 5 };
     }
