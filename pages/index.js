@@ -1,5 +1,5 @@
 import dbConnect from "../utils/db-connect-og";
-import Post from "../Models/post";
+import Blog from "../Models/blogpost";
 import Layout from "../Components/Layout/Layout";
 import Search from "../Components/Search/Search";
 import Recent from "../Components/Recent/Recent";
@@ -18,7 +18,7 @@ const Home = (props) => {
 
 export async function getStaticProps() {
   await dbConnect();
-  const posts = await Post.find({});
+  const posts = await Blog.find({});
   //stupid fix but it seems to be the one
   const finalPosts = JSON.parse(JSON.stringify(posts));
   return {

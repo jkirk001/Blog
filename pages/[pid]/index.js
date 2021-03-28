@@ -1,7 +1,7 @@
 import styles from "./singlePage.module.css";
 import Layout from "../../Components/Layout/Layout";
 import dbConnect from "../../utils/db-connect";
-import Post from "../../Models/postTwo";
+import Blog from "../../Models/blogpost";
 
 import { CopyBlock, dracula } from "react-code-blocks";
 
@@ -36,7 +36,7 @@ const postPageTest = (props) => {
       <div className={styles.singlePost}>
         <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.info}>
-          <img src={post.mainImg} />
+          <img src={post.mainImg ? post.mainImg : "/test.jpg"} />
           <div className={styles.authorInfo}>
             <span>
               <img src="https://res.cloudinary.com/dxtqihvgt/image/upload/v1616627732/face_oromjs.png"></img>
@@ -59,7 +59,7 @@ export async function getStaticProps(context) {
   const { params } = context;
   const id = params.pid;
   await dbConnect();
-  const posts = await Post.find({});
+  const posts = await Blog.find({});
   //stupid fix but it seems to be the one
   const finalPosts = JSON.parse(JSON.stringify(posts));
   const dataFinal = finalPosts.filter((item, index) => {
@@ -74,7 +74,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   await dbConnect();
-  const posts = await Post.find({});
+  const posts = await Blog.find({});
   //stupid fix but it seems to be the one
   const finalPosts = JSON.parse(JSON.stringify(posts));
   const dynamicPaths = finalPosts.map((item, index) => {

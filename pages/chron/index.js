@@ -3,7 +3,7 @@ import styles from "./chron.module.css";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import dbConnect from "../../utils/db-connect-og";
-import Post from "../../Models/post";
+import Blog from "../../Models/blogpost";
 
 const chron = (props) => {
   const [display, setDisplay] = useState();
@@ -112,14 +112,35 @@ const chron = (props) => {
   );
 };
 
+//!Need to find a way to manupulate date in server end
+
 export async function getStaticProps() {
   await dbConnect();
-  const posts = await Post.find({});
+  const posts = await Blog.find({});
+  const finalPosts = [];
+  for (let each of posts) {
+    const date = each.author.date.toLocaleString();
+    const values = date.split("/");
+    const month = values[0];
+    const day = values[1];
+    const almostYear = values[2];
+    const year = almostYear.split(",")[0];
+    const finalDate = {
+      year,
+      month,
+      day,
+    };
+    let finalEach = { ...each, ...each.author };
+    finalEach.author.date = finalDate;
+
+    finalPosts.push(finalEach);
+  }
+  console.log(finalPosts);
   //stupid fix but it seems to be the one
-  const finalPosts = JSON.parse(JSON.stringify(posts));
+  const finalPostsFormatted = JSON.parse(JSON.stringify(finalPosts));
   return {
     props: {
-      posts: finalPosts,
+      posts: finalPostsFormatted,
     },
   };
 }
