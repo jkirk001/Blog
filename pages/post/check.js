@@ -51,6 +51,16 @@ function Check() {
     }
   });
 
+  const finalSubmitHandler = async (e) => {
+    e.preventDefault();
+    let submitFinal = JSON.stringify(submit);
+    await fetch("http://localhost:3000/api/hello", {
+      method: "POST",
+      body: submitFinal,
+    });
+    console.log("success");
+  };
+
   return (
     <Layout>
       <div className={styles.singlePost}>
@@ -71,6 +81,8 @@ function Check() {
           {display}
         </div>
       </div>
+
+      <button onClick={finalSubmitHandler}>Looks Good?</button>
     </Layout>
   );
 }

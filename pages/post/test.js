@@ -8,6 +8,7 @@ const Post = (props) => {
     author: "",
     title: "",
     quip: "",
+    tags: [],
   });
   const [numTags, setNumTags] = useState(0);
   const [final, setFinal] = useState();
@@ -27,7 +28,7 @@ const Post = (props) => {
     e.preventDefault();
     const almostFinal = [];
     let group = 0;
-    for (let i = 4; i < e.target.length - 1; i++) {
+    for (let i = 10; i < e.target.length - 1; i++) {
       if (i % 2 === 0) {
         almostFinal.push({ type: e.target[i].value });
       }
@@ -69,6 +70,24 @@ const Post = (props) => {
   };
   const numTagsHandler = (e) => {
     setNumTags(e.target.value);
+  };
+
+  const radioHandler = (e) => {
+    console.log(e);
+    if (e.target.checked) {
+      setSubmitObj((prevState) => {
+        prevState.tags = [...prevState.tags, e.target.value];
+        return prevState;
+      });
+    }
+    if (!e.target.checked) {
+      setSubmitObj((prevState) => {
+        prevState.tags = prevState.tags.filter((item) => {
+          return item !== e.target.value;
+        });
+        return prevState;
+      });
+    }
   };
 
   // i guess the virtual dom sees only a few change, so it doesnt re-render items that stayw
@@ -120,6 +139,37 @@ const Post = (props) => {
             onChange={mainInputCHangehandler}
           ></input>
 
+          <label htmlFor="react">React</label>
+          <input
+            type="checkbox"
+            value="React"
+            id="react"
+            onChange={radioHandler}
+          />
+          <label htmlFor="next">Next</label>
+          <input
+            type="checkbox"
+            value="Next"
+            id="next"
+            onChange={radioHandler}
+          />
+          <label htmlFor="node">Node</label>
+          <input
+            type="checkbox"
+            value="Node"
+            id="node"
+            onChange={radioHandler}
+          />
+          <label htmlFor="js">JS</label>
+          <input type="checkbox" value="JS" id="js" onChange={radioHandler} />
+          <label htmlFor="express">Express</label>
+          <input
+            type="checkbox"
+            value="Express"
+            id="express"
+            onChange={radioHandler}
+          />
+
           <div>
             <label htmlFor="numTags">How many Tags?</label>
             <input
@@ -128,6 +178,7 @@ const Post = (props) => {
               min="0"
               onChange={numTagsHandler}
             ></input>
+            <input defaultValue="filler" style={{ opacity: "0" }} />
           </div>
 
           <div>{displayBodyInputs}</div>
