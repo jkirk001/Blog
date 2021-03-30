@@ -31,6 +31,9 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
           <Link href="/topics">
             <a>Topics</a>
           </Link>
+          <Link href="/post">
+            <a>Post</a>
+          </Link>
         </div>
       </header>
       <main className={styles.main}>{children}</main>

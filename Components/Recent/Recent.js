@@ -1,14 +1,13 @@
 import styles from "./recent.module.css";
 import Link from "next/link";
 import { Fragment } from "react";
+import insertionSort from "../../utils/insertionSort";
 
 const Recent = (props) => {
   const { data } = props;
   let array = [];
   if (data) {
-    for (let i = 0; i < 3; i++) {
-      array.push(data[i]);
-    }
+    array = insertionSort(data, data.lengths).reverse();
   } else {
     array = [{ title: "Next" }, { title: "Pingu" }, { title: "22222" }];
   }

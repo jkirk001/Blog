@@ -1,0 +1,21 @@
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 700px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 300px;
+}
+.form input,
+.form select {
+  font-size: 20px;
+}
+.techs {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}

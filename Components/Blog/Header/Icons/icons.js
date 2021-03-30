@@ -5,7 +5,7 @@ const Icons = (props) => {
     return <img className={styles.img} key={index} src={`/${item}.svg`} />;
   });
 
-  return <div>{icons}</div>;
+  return <div className={styles.iconContainer}>{icons}</div>;
 };
 
 export default Icons;
