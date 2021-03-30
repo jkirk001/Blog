@@ -2,23 +2,23 @@ import Layout from "../../Components/Layout/Layout";
 import styles from "./chron.module.css";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import dbConnect from "../../utils/db-connect-og";
+import dbConnect from "../../utils/db-connect";
 import Blog from "../../Models/blogpost";
 
 const chron = (props) => {
   const [display, setDisplay] = useState();
   const [year, setYear] = useState();
   const [month, setMonth] = useState();
-
-  console.log(`display aray: ${display}, year ${year}, month ${month}`);
+  console.log(props.posts);
 
   useEffect(() => {
     const filteredArray = props.posts.filter((item, index) => {
-      return item.date.year === parseInt(year);
+      return parseInt(item.date.year) === parseInt(year);
     });
+
     if (month) {
       const filteredArrayMonth = filteredArray.filter((item, index) => {
-        return item.date.month === parseInt(month);
+        return parseInt(item.date.month) === parseInt(month);
       });
       setDisplay(filteredArrayMonth);
       return;
@@ -117,25 +117,20 @@ const chron = (props) => {
 export async function getStaticProps() {
   await dbConnect();
   const posts = await Blog.find({});
-  const finalPosts = [];
-  for (let each of posts) {
-    const date = each.author.date.toLocaleString();
-    const values = date.split("/");
-    const month = values[0];
-    const day = values[1];
-    const almostYear = values[2];
-    const year = almostYear.split(",")[0];
-    const finalDate = {
-      year,
-      month,
-      day,
-    };
-    let finalEach = { ...each, ...each.author };
-    finalEach.author.date = finalDate;
-
-    finalPosts.push(finalEach);
-  }
-  console.log(finalPosts);
+  console.log(posts);
+  const finalPosts = posts.map((item, index) => {
+    const date = item.author.date.toLocaleDateString().split("/");
+    item = item.toObject();
+    const nearlyFinal = Object({
+      ...item,
+      date: {
+        month: date[0],
+        day: date[1],
+        year: date[2],
+      },
+    });
+    return nearlyFinal;
+  });
   //stupid fix but it seems to be the one
   const finalPostsFormatted = JSON.parse(JSON.stringify(finalPosts));
   return {

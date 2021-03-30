@@ -1,6 +1,6 @@
 import Layout from "../../Components/Layout/Layout";
-import dbConnect from "../../utils/db-connect-og";
-import Post from "../../Models/postTwo";
+import dbConnect from "../../utils/db-connect";
+import Blog from "../../Models/blogpost";
 import styles from "./topics.module.css";
 import { useEffect, useState } from "react";
 
@@ -83,7 +83,7 @@ const Topics = (props) => {
           />
           <img
             id="js"
-            src="js.svg"
+            src="javas.svg"
             onClick={techHandler}
             className={selected === "js" ? styles.tagSelected : styles.tag}
           />
@@ -102,7 +102,7 @@ const Topics = (props) => {
 
 export async function getStaticProps() {
   await dbConnect();
-  const posts = await Post.find({});
+  const posts = await Blog.find({});
   //stupid fix but it seems to be the one
   const finalPosts = JSON.parse(JSON.stringify(posts));
   return {

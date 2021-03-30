@@ -15,7 +15,7 @@ const Recent = (props) => {
 
   const display = array.map((item, index) => {
     return (
-      <Link href={`${item._id}`}>
+      <Link key={`${item._id}`} href={`${item._id}`}>
         <div
           style={{
             backgroundImage: `linear-gradient(
