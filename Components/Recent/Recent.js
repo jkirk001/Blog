@@ -2,6 +2,7 @@ import styles from "./recent.module.css";
 import Link from "next/link";
 import { Fragment } from "react";
 import insertionSort from "../../utils/insertionSort";
+import Icons from "../Blog/Header/Icons/icons";
 
 const Recent = (props) => {
   const { data } = props;
@@ -25,8 +26,13 @@ const Recent = (props) => {
           }}
           className={styles.recentArticle}
         >
-          <span>{item.title}</span>
-          <p>{item.quip}</p>
+          <div className={styles.recentInfo}>
+            <span>{item.title}</span>
+            <p>{item.quip}</p>
+          </div>
+          <div className={styles.icons}>
+            <Icons data={item.tags} />
+          </div>
         </div>
       </Link>
     );

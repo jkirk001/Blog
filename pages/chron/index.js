@@ -1,17 +1,22 @@
 import Layout from "../../Components/Layout/Layout";
 import styles from "./chron.module.css";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import dbConnect from "../../utils/db-connect";
 import Blog from "../../Models/blogpost";
+import LinkCard from "../../Components/UI/LinkCard/LinkCard";
+import insertionSort from "../../utils/testInsert";
 
 const chron = (props) => {
   const [display, setDisplay] = useState();
   const [year, setYear] = useState();
   const [month, setMonth] = useState();
-  console.log(props.posts);
 
   useEffect(() => {
+    //get isnertion sort to work correctly
+    console.log(props.posts);
+    const orderedArr = insertionSort(props.posts, props.posts.length);
+    console.log(orderedArr);
+
     const filteredArray = props.posts.filter((item, index) => {
       return parseInt(item.date.year) === parseInt(year);
     });
@@ -23,6 +28,7 @@ const chron = (props) => {
       setDisplay(filteredArrayMonth);
       return;
     }
+    //setDisplay(filteredArray);
     setDisplay(filteredArray);
   }, [year, month]);
 
@@ -40,11 +46,7 @@ const chron = (props) => {
   let content = <p>press a year</p>;
   if (display) {
     content = display.map((item, index) => {
-      return (
-        <li key={index} className={styles.contentItems}>
-          <Link href={`/${item._id}`}>{item.title}</Link>
-        </li>
-      );
+      return <LinkCard key={index} data={item} />;
     });
   }
   const monthSpelled = [

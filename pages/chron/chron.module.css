@@ -73,18 +73,16 @@
   height: 40px;
 }
 .contentContainer {
-  width: 60%;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 .content {
-  background-color: pink;
-  opacity: 0.5;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  width: 60%;
+  width: 80%;
 }
 .contentItems {
   list-style: none;

@@ -1,7 +1,18 @@
 .img {
-  width: 50px;
+  width: 40%;
+  max-width: 50px;
   margin: 0 20px;
 }
+.iconContainerRecent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  min-width: 180px;
+}
+
 .iconContainer {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }

@@ -1,12 +1,3 @@
-.recent {
-  width: 90%;
-  height: 100%;
-
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 .recentArticle {
   width: 90%;
   height: 100%;

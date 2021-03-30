@@ -25,6 +25,9 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
       <header className={styles.navbar}>
         <img onClick={mainContext.switch} src="/logo2.png" />
         <div className={styles.navLinks}>
+          <Link href="/">
+            <a>Home</a>
+          </Link>
           <Link href="/chron">
             <a>Chronological</a>
           </Link>

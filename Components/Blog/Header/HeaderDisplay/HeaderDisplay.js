@@ -7,7 +7,7 @@ const Header = (props) => {
   return (
     <Fragment>
       <h1 className={styles.title}>{props.data.title}</h1>
-      <Icons data={props.data.tags} />
+      <Icons data={props.data.tags} type={"blog"} />
       <Author data={props.data.author} />
       <div className={styles.info}>
         <img src={props.data.mainImg ? props.data.mainImg : "/test.jpg"} />
