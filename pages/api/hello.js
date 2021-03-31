@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import dbConnect from "../../utils/db-connect";
+import dbConnect from "../../utils/db-connect-new";
 import Blog from "../../Models/blogpost";
 
 const handler = async (req, res) => {

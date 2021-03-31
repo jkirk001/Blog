@@ -29,7 +29,7 @@ const Topics = (props) => {
     }
     if (selected === "js") {
       const display = props.posts.filter((item, index) => {
-        return item.tags.includes("Javascript");
+        return item.tags.includes("JS");
       });
       setFound(display);
     }
@@ -39,9 +39,9 @@ const Topics = (props) => {
       });
       setFound(display);
     }
-    if (selected === "js") {
+    if (selected === "express") {
       const display = props.posts.filter((item, index) => {
-        return item.tags.includes("Javascript");
+        return item.tags.includes("Express");
       });
       setFound(display);
     }
@@ -65,33 +65,39 @@ const Topics = (props) => {
         <div className={styles.tags}>
           <img
             id="react"
-            src="react.svg"
+            src="/devLogos/React.svg"
             onClick={techHandler}
             className={selected === "react" ? styles.tagSelected : styles.tag}
           />
           <img
             id="next"
-            src="next.svg"
+            src="/devLogos/Next.svg"
             onClick={techHandler}
             className={selected === "next" ? styles.tagSelected : styles.tag}
           />
           <img
             id="mongo"
-            src="mongo.svg"
+            src="/devLogos/Mongo.svg"
             onClick={techHandler}
             className={selected === "mongo" ? styles.tagSelected : styles.tag}
           />
           <img
             id="js"
-            src="javas.svg"
+            src="/devLogos/JS.svg"
             onClick={techHandler}
             className={selected === "js" ? styles.tagSelected : styles.tag}
           />
           <img
             id="node"
-            src="nodejs.svg"
+            src="/devLogos/Node.svg"
             onClick={techHandler}
             className={selected === "node" ? styles.tagSelected : styles.tag}
+          />
+          <img
+            id="express"
+            src="/devLogos/Express.svg"
+            onClick={techHandler}
+            className={selected === "express" ? styles.tagSelected : styles.tag}
           />
         </div>
         <div>{display}</div>
