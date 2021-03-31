@@ -8,12 +8,24 @@ const Recent = (props) => {
   const { data } = props;
   let array = [];
   if (data) {
-    array = insertionSort(data, data.lengths).reverse();
+    array = insertionSort(data);
+    array = array.slice(array.length - 3, array.length).reverse();
   } else {
     array = [{ title: "Next" }, { title: "Pingu" }, { title: "22222" }];
   }
 
   const display = array.map((item, index) => {
+    const testImages = [
+      "test.jpg",
+      "serverSide.jpg",
+      "js.jpg",
+      "react.jpg",
+      "setup.jpg",
+    ];
+    let testImage = `/postImages/${
+      testImages[Math.floor(Math.random() * testImages.length)]
+    }`;
+
     return (
       <Link key={`${item._id}`} href={`${item._id}`}>
         <div
@@ -21,7 +33,7 @@ const Recent = (props) => {
             backgroundImage: `linear-gradient(
               rgba(0, 0, 0, 0.5),
               rgba(0, 0, 0, 0.5)
-            ),url(${item.mainImg ? item.mainImg : "test.jpg"})`,
+            ),url(${item.mainImg ? item.mainImg : testImage})`,
             backgroundSize: "cover",
           }}
           className={styles.recentArticle}

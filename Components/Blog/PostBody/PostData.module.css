@@ -10,10 +10,15 @@
   line-height: 170%;
   text-indent: 20px;
   font-size: 1.2rem;
+  margin-left: 20px;
 }
 .postMain img {
   width: 100%;
   display: flex;
   margin: 3rem 0;
   box-shadow: 0 2px 5px grey;
+}
+.postMain h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
 }

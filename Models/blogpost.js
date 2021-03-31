@@ -19,6 +19,9 @@ const blogSchema = new mongoose.Schema({
   body: {
     type: Array,
   },
+  mainImg: {
+    type: String,
+  },
 });
 
 export default models.Blog || mongoose.model("Blog", blogSchema);

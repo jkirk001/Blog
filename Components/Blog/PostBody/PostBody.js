@@ -21,11 +21,14 @@ const PostBody = (props) => {
     if (item.type === "img") {
       return <img key={index} src={`${item.content}`} />;
     }
+    if (item.type === "sub") {
+      return <h2 key={index}>{item.content}</h2>;
+    }
   });
   console.log(display);
   return (
     <div className={styles.postMain}>
-      <span className={styles.postQuote}>{props.data.quip}</span>
+      <span className={styles.postQuote}>"{props.data.quip}"</span>
       {display}
     </div>
   );

@@ -12,6 +12,7 @@ const Post = (props) => {
     title: "",
     quip: "",
     tags: [],
+    mainImg: "",
   });
   const [numTags, setNumTags] = useState(0);
   const [final, setFinal] = useState();
@@ -31,7 +32,7 @@ const Post = (props) => {
     e.preventDefault();
     const almostFinal = [];
     let group = 0;
-    for (let i = 10; i < e.target.length - 1; i++) {
+    for (let i = 12; i < e.target.length - 1; i++) {
       if (i % 2 === 0) {
         almostFinal.push({ type: e.target[i].value });
       }
@@ -70,13 +71,18 @@ const Post = (props) => {
         return state;
       });
     }
+    if (e.target.id === "mainImg") {
+      setSubmitObj((prevState) => {
+        let state = { ...prevState, mainImg: e.target.value };
+        return state;
+      });
+    }
   };
   const numTagsHandler = (e) => {
     setNumTags(e.target.value);
   };
 
   const radioHandler = (e) => {
-    console.log(e);
     if (e.target.checked) {
       setSubmitObj((prevState) => {
         prevState.tags = [...prevState.tags, e.target.value];
@@ -104,6 +110,7 @@ const Post = (props) => {
             <option value="p">p</option>
             <option value="img">img</option>
             <option value="code">code</option>
+            <option value="sub">sub-title</option>
           </select>
           <textarea
             style={{ minWidth: "700px", maxWidth: "700px" }}
@@ -145,6 +152,16 @@ const Post = (props) => {
             value={submitObj.quip}
             onChange={mainInputCHangehandler}
           ></input>
+          <label htmlFor="mainImg">Main Img </label>
+          <input
+            id="mainImg"
+            type="text"
+            placeholder="mainImg"
+            value={submitObj.mainImg}
+            onChange={mainInputCHangehandler}
+          ></input>
+          {/* Hidden array used to even out loop */}
+          <input id="hidden" type="hidden" />
           <div className={styles.techs}>
             <label htmlFor="react">React</label>
             <input
@@ -184,7 +201,6 @@ const Post = (props) => {
               onChange={radioHandler}
             />
           </div>
-
           <div>
             <label htmlFor="numTags">How many Tags?</label>
             <input
@@ -194,7 +210,6 @@ const Post = (props) => {
               onChange={numTagsHandler}
             ></input>
           </div>
-
           <div>{displayBodyInputs}</div>
           <button>Submit Form</button>
         </form>

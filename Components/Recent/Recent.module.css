@@ -13,10 +13,10 @@
   background-color: cyan;
   cursor: pointer;
   border-radius: 3px;
-  transition: 0.5s;
   margin: 20px;
   box-shadow: 0 1px 4px black;
   display: flex;
+  transition: 0.5s;
 }
 .recentArticle:hover {
   box-shadow: 0 1px 8px black;

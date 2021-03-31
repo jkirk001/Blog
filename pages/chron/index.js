@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import dbConnect from "../../utils/db-connect";
 import Blog from "../../Models/blogpost";
 import LinkCard from "../../Components/UI/LinkCard/LinkCard";
-import insertionSort from "../../utils/testInsert";
+import insertionSort from "../../utils/insertionSort";
 
 const chron = (props) => {
   const [display, setDisplay] = useState();
@@ -13,11 +13,9 @@ const chron = (props) => {
 
   useEffect(() => {
     //get isnertion sort to work correctly
-    console.log(props.posts);
-    const orderedArr = insertionSort(props.posts, props.posts.length);
-    console.log(orderedArr);
+    const orderedArr = insertionSort(props.posts);
 
-    const filteredArray = props.posts.filter((item, index) => {
+    const filteredArray = orderedArr.filter((item, index) => {
       return parseInt(item.date.year) === parseInt(year);
     });
 
@@ -25,11 +23,11 @@ const chron = (props) => {
       const filteredArrayMonth = filteredArray.filter((item, index) => {
         return parseInt(item.date.month) === parseInt(month);
       });
-      setDisplay(filteredArrayMonth);
+      setDisplay(filteredArrayMonth.reverse());
       return;
     }
     //setDisplay(filteredArray);
-    setDisplay(filteredArray);
+    setDisplay(filteredArray.reverse());
   }, [year, month]);
 
   const yearHandler = (e) => {
