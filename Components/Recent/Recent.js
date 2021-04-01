@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import insertionSort from "../../utils/insertionSort";
 import Icons from "../Blog/Header/Icons/icons";
+import LinkCard from "../../Components/UI/LinkCard/LinkCard";
 
 const Recent = (props) => {
   const { data } = props;
@@ -26,28 +27,7 @@ const Recent = (props) => {
       testImages[Math.floor(Math.random() * testImages.length)]
     }`;
 
-    return (
-      <Link key={`${item._id}`} href={`${item._id}`}>
-        <div
-          style={{
-            backgroundImage: `linear-gradient(
-              rgba(0, 0, 0, 0.5),
-              rgba(0, 0, 0, 0.5)
-            ),url(${item.mainImg ? item.mainImg : testImage})`,
-            backgroundSize: "cover",
-          }}
-          className={styles.recentArticle}
-        >
-          <div className={styles.recentInfo}>
-            <span>{item.title}</span>
-            <p>{item.quip}</p>
-          </div>
-          <div className={styles.icons}>
-            <Icons data={item.tags} />
-          </div>
-        </div>
-      </Link>
-    );
+    return <LinkCard data={item} key={item._id} />;
   });
 
   return (

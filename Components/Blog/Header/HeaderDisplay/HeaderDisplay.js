@@ -14,6 +14,7 @@ const Header = (props) => {
   let testImage = `/postImages/${
     testImages[Math.floor(Math.random() * testImages.length)]
   }`;
+  console.log(`Test${props.data}`);
   return (
     <Fragment>
       <h1 className={styles.title}>{props.data.title}</h1>

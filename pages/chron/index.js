@@ -3,7 +3,7 @@ import styles from "./chron.module.css";
 import { useEffect, useState } from "react";
 import dbConnect from "../../utils/db-connect";
 import Blog from "../../Models/blogpost";
-import LinkCard from "../../Components/UI/LinkCard/LinkCard";
+import LinkCardRow from "../../Components/UI/LinkCard/LinkCardRow/LinkCardRow";
 import insertionSort from "../../utils/insertionSort";
 
 const chron = (props) => {
@@ -21,7 +21,7 @@ const chron = (props) => {
 
     if (month) {
       const filteredArrayMonth = filteredArray.filter((item, index) => {
-        return parseInt(item.date.month) === parseInt(month);
+        return parseInt(item.date.month - 1) === parseInt(month);
       });
       setDisplay(filteredArrayMonth.reverse());
       return;
@@ -44,7 +44,7 @@ const chron = (props) => {
   let content = <p>press a year</p>;
   if (display) {
     content = display.map((item, index) => {
-      return <LinkCard key={index} data={item} />;
+      return <LinkCardRow key={index} data={item} />;
     });
   }
   const monthSpelled = [
@@ -77,7 +77,6 @@ const chron = (props) => {
       </button>
     );
   });
-
   return (
     <Layout>
       <section className={styles.dateSection}>
@@ -105,9 +104,7 @@ const chron = (props) => {
         </div>
         <div className={styles.monthButtons}>{year ? monthButton : null}</div>
       </section>
-      <section className={styles.contentContainer}>
-        <ul className={styles.content}>{content}</ul>
-      </section>
+      <section className={styles.contentContainer}>{content}</section>
     </Layout>
   );
 };
@@ -117,7 +114,6 @@ const chron = (props) => {
 export async function getStaticProps() {
   await dbConnect();
   const posts = await Blog.find({});
-  console.log(posts);
   const finalPosts = posts.map((item, index) => {
     const date = item.author.date.toLocaleDateString().split("/");
     item = item.toObject();

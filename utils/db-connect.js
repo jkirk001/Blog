@@ -13,9 +13,9 @@ async function dbConnect() {
       useUnifiedTopology: true,
       useFindAndModify: false,
       useCreateIndex: true,
-      maxIdleTimeMS: 1000,
-      serverSelectionTimeoutMS: 1000,
-      socketTimeoutMS: 2000,
+      //maxIdleTimeMS: 1000,
+      //serverSelectionTimeoutMS: 1000,
+      //socketTimeoutMS: 2000,
     })
     .then(console.log("open and connected"));
 }

@@ -6,7 +6,6 @@ import Blog from "../../Models/blogpost";
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const body = JSON.parse(req.body);
-    console.log(body);
     await dbConnect();
     Blog.insertMany(body)
       .then(() => console.log("Success"))

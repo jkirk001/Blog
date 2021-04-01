@@ -10,7 +10,6 @@ const Check = (props) => {
   const [submit, setSubmit] = useState();
 
   useEffect(() => {
-    console.log(mainContext.submitData);
     const data = mainContext.submitData;
 
     if (data.author === "jon") {

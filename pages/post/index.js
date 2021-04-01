@@ -28,7 +28,6 @@ const Post = (props) => {
   }, [final]);
 
   const submitHandler = (e) => {
-    console.log(e);
     e.preventDefault();
     const almostFinal = [];
     let group = 0;
@@ -37,17 +36,14 @@ const Post = (props) => {
         almostFinal.push({ type: e.target[i].value });
       }
       if (i % 2 === 1) {
-        console.log(e.target[i].value);
         almostFinal[group].content = e.target[i].value;
         group++;
       }
     }
-    console.log(almostFinal);
     let final = {
       ...submitObj,
       body: almostFinal,
     };
-    console.log(final);
     setFinal(final);
   };
 

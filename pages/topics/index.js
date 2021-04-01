@@ -3,6 +3,7 @@ import dbConnect from "../../utils/db-connect";
 import Blog from "../../Models/blogpost";
 import styles from "./topics.module.css";
 import { useEffect, useState } from "react";
+import LinkCardRow from "../../Components/UI/LinkCard/LinkCardRow/LinkCardRow";
 
 const Topics = (props) => {
   const [found, setFound] = useState();
@@ -48,14 +49,13 @@ const Topics = (props) => {
   }, [selected]);
 
   const techHandler = (e) => {
-    console.log(e.target.id);
     setSelected(e.target.id);
   };
 
   let display = null;
   if (found) {
     display = found.map((item, index) => {
-      return <h1 key={item._id}>{item.title}</h1>;
+      return <LinkCardRow data={item} key={item._id} />;
     });
   }
 
@@ -100,7 +100,7 @@ const Topics = (props) => {
             className={selected === "express" ? styles.tagSelected : styles.tag}
           />
         </div>
-        <div>{display}</div>
+        <div className={styles.display}>{display}</div>
       </div>
     </Layout>
   );
