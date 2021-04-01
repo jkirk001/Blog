@@ -2,6 +2,7 @@ import Layout from "../../Components/Layout/Layout";
 import LinkCardRow from "../../Components/UI/LinkCard/LinkCardRow/LinkCardRow";
 import dbConnect from "../../utils/db-connect";
 import Blog from "../../Models/blogpost";
+import styles from "./allPosts.module.css";
 
 const allPosts = (props) => {
   const { posts } = props;

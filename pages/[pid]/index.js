@@ -61,7 +61,7 @@ export async function getStaticProps(context) {
       post: dataFinal[0],
     },
     notFound: false,
-    revalidate: 10,
+    revalidate: 1,
   };
 }
 
@@ -83,7 +83,7 @@ export async function getStaticPaths() {
 
   return {
     paths: dynamicPaths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 

@@ -133,6 +133,7 @@ export async function getStaticProps() {
     props: {
       posts: finalPostsFormatted,
     },
+    revalidate: 10,
   };
 }
 

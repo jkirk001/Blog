@@ -42,8 +42,13 @@ const Check = (props) => {
   return (
     <Layout>
       <div className={styles.singlePost}>
-        <HeaderDisplay data={submit} />
-        <PostBody data={submit} />
+        <HeaderDisplay
+          author={submit.author}
+          title={submit.title}
+          tags={submit.tags}
+          mainImg={submit.mainImg}
+        />
+        <PostBody body={submit.body} quip={submit.quip} />
       </div>
       <button onClick={finalSubmitHandler}>Looks Good?</button>
     </Layout>
