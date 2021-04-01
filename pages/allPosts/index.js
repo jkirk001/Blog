@@ -1,17 +1,16 @@
-import dbConnect from "../utils/db-connect";
-import Blog from "../Models/blogpost";
-import Layout from "../Components/Layout/Layout";
-import Search from "../Components/Search/Search";
-import Recent from "../Components/Recent/Recent";
-import React, { useContext } from "react";
-import { ModeContext } from "../Context/context";
+import Layout from "../../Components/Layout/Layout";
+import LinkCardRow from "../../Components/UI/LinkCard/LinkCardRow/LinkCardRow";
+import dbConnect from "../../utils/db-connect";
+import Blog from "../../Models/blogpost";
 
-const Home = (props) => {
-  //const { data } = useContext(ModeContext);
+const allPosts = (props) => {
+  const { posts } = props;
+  const display = posts.map((item) => {
+    return <LinkCardRow key={item._id} data={item} />;
+  });
   return (
     <Layout>
-      <Recent data={props.posts} />
-      <Search data={props.posts} />
+      <div>{display}</div>
     </Layout>
   );
 };
@@ -37,4 +36,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Home;
+export default allPosts;

@@ -1,7 +1,8 @@
 import styles from "./PostData.module.css";
 import { CopyBlock, dracula } from "react-code-blocks";
 const PostBody = (props) => {
-  const display = props.data.body.map((item, index) => {
+  const { body, quip } = props;
+  const display = body.map((item, index) => {
     if (item.type === "p") {
       return <p key={index}>{item.content}</p>;
     }
@@ -26,7 +27,7 @@ const PostBody = (props) => {
   });
   return (
     <div className={styles.postMain}>
-      <span className={styles.postQuote}>"{props.data.quip}"</span>
+      <span className={styles.postQuote}>"{quip}"</span>
       {display}
     </div>
   );

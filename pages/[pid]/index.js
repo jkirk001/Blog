@@ -4,18 +4,32 @@ import Blog from "../../Models/blogpost";
 import styles from "./singlePage.module.css";
 import PostBody from "../../Components/Blog/PostBody/PostBody";
 import HeaderDisplay from "../../Components/Blog/Header/HeaderDisplay/HeaderDisplay";
+import { Fragment } from "react";
 
 const Display = (props) => {
-  const post = props.posts[0];
+  const posts = { ...props.post };
+  const author = { ...posts.author };
+  const tags = [...posts.tags];
+  const title = posts.title;
+  const quip = posts.quip;
+  const mainImg = posts.mainImg;
+  const body = posts.body;
 
-  return (
+  let display = (
     <Layout>
       <div className={styles.singlePost}>
-        <HeaderDisplay data={post} />
-        <PostBody data={post} />
+        <HeaderDisplay
+          author={author}
+          title={title}
+          tags={tags}
+          mainImg={mainImg}
+        />
+        <PostBody body={body} quip={quip} />
       </div>
     </Layout>
   );
+
+  return <Fragment>{display}</Fragment>;
 };
 
 export async function getStaticProps(context) {
@@ -35,6 +49,7 @@ export async function getStaticProps(context) {
   const dataFinal = finalPosts.filter((item, index) => {
     return item._id === id;
   });
+
   if (dataFinal.length === 0) {
     return {
       notFound: true,
@@ -43,9 +58,10 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      posts: dataFinal,
+      post: dataFinal[0],
     },
     notFound: false,
+    revalidate: 10,
   };
 }
 
@@ -64,9 +80,10 @@ export async function getStaticPaths() {
   const dynamicPaths = finalPosts.map((item, index) => {
     return { params: { pid: item._id } };
   });
+
   return {
     paths: dynamicPaths,
-    fallback: true,
+    fallback: false,
   };
 }
 

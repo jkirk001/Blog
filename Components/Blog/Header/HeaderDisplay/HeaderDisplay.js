@@ -4,6 +4,7 @@ import Author from "../Author/Author";
 import styles from "./HeaderDisplay.module.css";
 
 const Header = (props) => {
+  const { author, title, mainImg, tags } = props;
   const testImages = [
     "test.jpg",
     "serverSide.jpg",
@@ -14,14 +15,13 @@ const Header = (props) => {
   let testImage = `/postImages/${
     testImages[Math.floor(Math.random() * testImages.length)]
   }`;
-  console.log(`Test${props.data}`);
   return (
     <Fragment>
-      <h1 className={styles.title}>{props.data.title}</h1>
-      <Icons data={props.data.tags} type={"blog"} />
-      <Author data={props.data.author} />
+      <h1 className={styles.title}>{title}</h1>
+      <Icons data={tags} type={"blog"} />
+      <Author data={author} />
       <div className={styles.info}>
-        <img src={props.data.mainImg ? props.data.mainImg : testImage} />
+        <img src={mainImg ? mainImg : testImage} />
       </div>
     </Fragment>
   );
