@@ -1,11 +1,12 @@
 import styles from "./recent.module.css";
-import Link from "next/link";
 import { Fragment } from "react";
 import insertionSort from "../../utils/insertionSort";
-import Icons from "../Blog/Header/Icons/icons";
-import LinkCard from "../../Components/UI/LinkCard/LinkCard";
+import LinkCard from "../../Components/UI/CardDisplay/LinkCard/LinkCard";
+import { useState } from "react";
+import Trail from "../UI/Animations/Trail";
 
 const Recent = (props) => {
+  const [open, set] = useState(true);
   const { data } = props;
   let array = [];
   if (data) {
@@ -33,7 +34,11 @@ const Recent = (props) => {
   return (
     <Fragment>
       <h2>Recent</h2>
-      <div className={styles.recent}>{display}</div>
+      <div className={styles.recent}>
+        <Trail open={open} onClick={() => set((state) => !state)}>
+          {display}
+        </Trail>
+      </div>
     </Fragment>
   );
 };

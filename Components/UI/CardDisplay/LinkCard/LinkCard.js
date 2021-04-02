@@ -1,8 +1,8 @@
-import styles from "./LinkCardRow.module.css";
+import styles from "./LinkCard.module.css";
 import Link from "next/link";
-import Icons from "../../../UI/Icons/Icons";
+import Icons from "../../Icons/Icons";
 
-const LinkCardRow = (props) => {
+const LinkCard = (props) => {
   const item = props.data;
   return (
     <Link key={`${item._id}`} href={`${item._id}`}>
@@ -27,4 +27,4 @@ const LinkCardRow = (props) => {
     </Link>
   );
 };
-export default LinkCardRow;
+export default LinkCard;

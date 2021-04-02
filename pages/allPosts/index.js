@@ -1,5 +1,5 @@
 import Layout from "../../Components/Layout/Layout";
-import LinkCardRow from "../../Components/UI/LinkCard/LinkCardRow/LinkCardRow";
+import LinkCardRow from "../../Components/UI/CardDisplay/LinkCardRow/LinkCardRow";
 import dbConnect from "../../utils/db-connect";
 import Blog from "../../Models/blogpost";
 import styles from "./allPosts.module.css";
@@ -11,7 +11,8 @@ const allPosts = (props) => {
   });
   return (
     <Layout>
-      <div>{display}</div>
+      <h2>All Posts -- Newest To Oldest</h2>
+      <div className={styles.listAll}>{display}</div>
     </Layout>
   );
 };

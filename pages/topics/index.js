@@ -3,7 +3,7 @@ import dbConnect from "../../utils/db-connect";
 import Blog from "../../Models/blogpost";
 import styles from "./topics.module.css";
 import { useEffect, useState } from "react";
-import LinkCardRow from "../../Components/UI/LinkCard/LinkCardRow/LinkCardRow";
+import LinkCardRow from "../../Components/UI/CardDisplay/LinkCardRow/LinkCardRow";
 
 const Topics = (props) => {
   const [found, setFound] = useState();
