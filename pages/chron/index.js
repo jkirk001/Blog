@@ -5,11 +5,13 @@ import dbConnect from "../../utils/db-connect";
 import Blog from "../../Models/blogpost";
 import LinkCardRow from "../../Components/UI/CardDisplay/LinkCardRow/LinkCardRow";
 import insertionSort from "../../utils/insertionSort";
+import TrailCol from "../../Components/UI/Animations/Trail-Col";
 
 const chron = (props) => {
   const [display, setDisplay] = useState();
   const [year, setYear] = useState();
   const [month, setMonth] = useState();
+  const [open, set] = useState(true);
 
   useEffect(() => {
     //get isnertion sort to work correctly
@@ -104,7 +106,11 @@ const chron = (props) => {
         </div>
         <div className={styles.monthButtons}>{year ? monthButton : null}</div>
       </section>
-      <section className={styles.contentContainer}>{content}</section>
+      <section className={styles.contentContainer}>
+        <TrailCol open={open} onClick={() => set((state) => !state)}>
+          {content}
+        </TrailCol>
+      </section>
     </Layout>
   );
 };

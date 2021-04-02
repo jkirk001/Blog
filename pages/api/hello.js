@@ -12,6 +12,11 @@ const handler = async (req, res) => {
       .catch((e) => console.log("failure"));
     return res.json({ message: "successlol" });
   }
+  if (req.method === "GET") {
+    await dbConnect();
+    const blogs = await Blog.find({});
+    return res.json(blogs);
+  }
   return res.json({ message: "hi" });
 };
 export default handler;

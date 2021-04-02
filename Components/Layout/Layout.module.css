@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
+  background-color: #444444;
   color: whitesmoke;
   min-height: 100vh;
   height: 100%;
@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: whitesmoke;
+  background-color: rgb(229, 226, 226);
   min-height: 100vh;
   height: 100%;
   width: 100%;
@@ -30,7 +30,7 @@
   margin-left: 10px;
 }
 .navLinks {
-  width: 300px;
+  width: 400px;
   display: flex;
   justify-content: space-around;
 }

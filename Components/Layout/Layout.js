@@ -28,6 +28,9 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
           <Link href="/">
             <a>Home</a>
           </Link>
+          <Link href="/allPosts">
+            <a>All Posts</a>
+          </Link>
           <Link href="/chron">
             <a>Chronological</a>
           </Link>

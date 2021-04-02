@@ -4,10 +4,13 @@ import Blog from "../../Models/blogpost";
 import styles from "./topics.module.css";
 import { useEffect, useState } from "react";
 import LinkCardRow from "../../Components/UI/CardDisplay/LinkCardRow/LinkCardRow";
+import TrailCol from "../../Components/UI/Animations/Trail-Col";
+import InOutTransition from "../../Components/UI/Animations/in-out-transition";
 
 const Topics = (props) => {
   const [found, setFound] = useState();
   const [selected, setSelected] = useState();
+  const [open, set] = useState(true);
 
   useEffect(() => {
     if (selected === "react") {
@@ -100,7 +103,11 @@ const Topics = (props) => {
             className={selected === "express" ? styles.tagSelected : styles.tag}
           />
         </div>
-        <div className={styles.display}>{display}</div>
+        <div className={styles.display}>
+          <TrailCol open={open} onClick={() => set((state) => !state)}>
+            {display}
+          </TrailCol>
+        </div>
       </div>
     </Layout>
   );
@@ -120,3 +127,7 @@ export async function getStaticProps() {
 }
 
 export default Topics;
+
+/*  <TrailCol open={open} onClick={() => set((state) => !state)}>
+            {display}
+          </TrailCol>*/

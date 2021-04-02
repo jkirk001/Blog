@@ -15,3 +15,17 @@ a {
 * {
   box-sizing: border-box;
 }
+.trails-main-col {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.trails-main-col-cont {
+  display: flex;
+  justify-content: center;
+}
+.trails-text-col {
+  width: 100%;
+  max-width: 400px;
+}
