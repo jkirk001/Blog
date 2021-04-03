@@ -1,4 +1,4 @@
-import styles from "./icons.module.css";
+import styles from "./Icons.module.css";
 
 const Icons = (props) => {
   const icons = props.data.map((item, index) => {
