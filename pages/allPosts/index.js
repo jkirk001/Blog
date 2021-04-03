@@ -1,8 +1,7 @@
 import Layout from "../../Components/Layout/Layout";
 import LinkCardRow from "../../Components/UI/CardDisplay/LinkCardRow/LinkCardRow";
-import dbConnect from "../../utils/db-connect";
-import Blog from "../../Models/blogpost";
 import styles from "./allPosts.module.css";
+import axios from "axios";
 
 const allPosts = (props) => {
   const { posts } = props;
@@ -18,23 +17,16 @@ const allPosts = (props) => {
 };
 
 export async function getStaticProps() {
-  await dbConnect();
-  const posts = await Blog.find({});
-  //stupid fix but it seems to be the one
-  //const finalPosts = JSON.parse(JSON.stringify(posts));
-
-  //?It cant parse non-seralizable data -- must expand nested objects, this is more explicit
-  const finalPosts = posts.map((item) => {
-    let finalPost = item.toObject();
-    finalPost._id = finalPost._id.toString();
-    finalPost.author.date = finalPost.author.date.toString();
-    return finalPost;
-  });
+  let finalPosts = await axios.get(
+    "https://evron-dev-blog-default-rtdb.firebaseio.com/posts/-MXOUrJ6usAbNAqgoio9.json"
+  );
+  console.log(finalPosts.data.object);
+  finalPosts = await JSON.parse(JSON.stringify(finalPosts.data.object));
   return {
     props: {
       posts: finalPosts,
     },
-    revalidate: 10,
+    revalidate: 100,
   };
 }
 

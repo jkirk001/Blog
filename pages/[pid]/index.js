@@ -1,10 +1,9 @@
 import Layout from "../../Components/Layout/Layout";
-import dbConnect from "../../utils/db-connect";
-import Blog from "../../Models/blogpost";
 import styles from "./singlePage.module.css";
 import PostBody from "../../Components/Blog/PostBody/PostBody";
 import HeaderDisplay from "../../Components/Blog/Header/HeaderDisplay/HeaderDisplay";
 import { Fragment } from "react";
+import axios from "axios";
 
 const Display = (props) => {
   const posts = { ...props.post };
@@ -35,17 +34,11 @@ const Display = (props) => {
 export async function getStaticProps(context) {
   const { params } = context;
   const id = params.pid;
-  await dbConnect();
-  const posts = await Blog.find({});
-  //stupid fix but it seems to be the one
-  //const finalPosts = JSON.parse(JSON.stringify(posts));
+  let finalPosts = await axios.get(
+    "https://evron-dev-blog-default-rtdb.firebaseio.com/posts/-MXOUrJ6usAbNAqgoio9.json"
+  );
+  finalPosts = await JSON.parse(JSON.stringify(finalPosts.data.object));
 
-  const finalPosts = posts.map((item) => {
-    let finalPost = item.toObject();
-    finalPost._id = finalPost._id.toString();
-    finalPost.author.date = finalPost.author.date.toString();
-    return finalPost;
-  });
   const dataFinal = finalPosts.filter((item, index) => {
     return item._id === id;
   });
@@ -66,17 +59,10 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  await dbConnect();
-  const posts = await Blog.find({});
-  //stupid fix but it seems to be the one
-  //const finalPosts = JSON.parse(JSON.stringify(posts));
-
-  const finalPosts = posts.map((item) => {
-    let finalPost = item.toObject();
-    finalPost._id = finalPost._id.toString();
-    finalPost.author.date = finalPost.author.date.toString();
-    return finalPost;
-  });
+  let finalPosts = await axios.get(
+    "https://evron-dev-blog-default-rtdb.firebaseio.com/posts/-MXOUrJ6usAbNAqgoio9.json"
+  );
+  finalPosts = await JSON.parse(JSON.stringify(finalPosts.data.object));
   const dynamicPaths = finalPosts.map((item, index) => {
     return { params: { pid: item._id } };
   });

@@ -1,10 +1,9 @@
-import dbConnect from "../utils/db-connect";
-import Blog from "../Models/blogpost";
 import Layout from "../Components/Layout/Layout";
 import Search from "../Components/Search/Search";
 import Recent from "../Components/Recent/Recent";
 import React, { useContext } from "react";
 import { ModeContext } from "../Context/context";
+import axios from "axios";
 
 const Home = (props) => {
   //const { data } = useContext(ModeContext);
@@ -17,23 +16,15 @@ const Home = (props) => {
 };
 
 export async function getStaticProps() {
-  await dbConnect();
-  const posts = await Blog.find({});
-  //stupid fix but it seems to be the one
-  //const finalPosts = JSON.parse(JSON.stringify(posts));
-
-  //?It cant parse non-seralizable data -- must expand nested objects, this is more explicit
-  const finalPosts = posts.map((item) => {
-    let finalPost = item.toObject();
-    finalPost._id = finalPost._id.toString();
-    finalPost.author.date = finalPost.author.date.toString();
-    return finalPost;
-  });
+  let finalPosts = await axios.get(
+    "https://evron-dev-blog-default-rtdb.firebaseio.com/posts/-MXOUrJ6usAbNAqgoio9.json"
+  );
+  finalPosts = await JSON.parse(JSON.stringify(finalPosts.data.object));
   return {
     props: {
       posts: finalPosts,
     },
-    revalidate: 10,
+    revalidate: 100,
   };
 }
 

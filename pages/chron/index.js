@@ -1,11 +1,10 @@
 import Layout from "../../Components/Layout/Layout";
 import styles from "./chron.module.css";
 import { useEffect, useState } from "react";
-import dbConnect from "../../utils/db-connect";
-import Blog from "../../Models/blogpost";
 import LinkCardRow from "../../Components/UI/CardDisplay/LinkCardRow/LinkCardRow";
 import insertionSort from "../../utils/insertionSort";
 import TrailCol from "../../Components/UI/Animations/Trail-Col";
+import axios from "axios";
 
 const chron = (props) => {
   const [display, setDisplay] = useState();
@@ -136,28 +135,29 @@ const chron = (props) => {
 //!Need to find a way to manupulate date in server end
 
 export async function getStaticProps() {
-  await dbConnect();
-  const posts = await Blog.find({});
-  const finalPosts = posts.map((item, index) => {
-    const date = item.author.date.toLocaleDateString().split("/");
-    item = item.toObject();
+  let finalPosts = await axios.get(
+    "https://evron-dev-blog-default-rtdb.firebaseio.com/posts/-MXOUrJ6usAbNAqgoio9.json"
+  );
+  finalPosts = await JSON.parse(JSON.stringify(finalPosts.data.object));
+  const finalPostsFINAL = finalPosts.map((item, index) => {
+    let date = item.author.date.split("-");
+    date[2] = date[2].split("T")[0];
     const nearlyFinal = Object({
       ...item,
       date: {
-        month: date[0],
-        day: date[1],
-        year: date[2],
+        month: date[1],
+        day: date[2],
+        year: date[0],
       },
     });
     return nearlyFinal;
   });
-  //stupid fix but it seems to be the one
-  const finalPostsFormatted = JSON.parse(JSON.stringify(finalPosts));
+
   return {
     props: {
-      posts: finalPostsFormatted,
+      posts: finalPostsFINAL,
     },
-    revalidate: 10,
+    revalidate: 100,
   };
 }
 
