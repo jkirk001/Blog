@@ -1,4 +1,4 @@
-import styles from "./recent.module.css";
+import styles from "./Recent.module.css";
 import { Fragment } from "react";
 import insertionSort from "../../utils/insertionSort";
 import LinkCard from "../../Components/UI/CardDisplay/LinkCard/LinkCard";
