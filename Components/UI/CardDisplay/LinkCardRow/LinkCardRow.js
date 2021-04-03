@@ -6,7 +6,7 @@ const LinkCardRow = (props) => {
   const item = props.data;
   return (
     <Link key={`${item._id}`} href={`${item._id}`}>
-      <div
+      <a
         style={{
           backgroundImage: `linear-gradient(
               rgba(0, 0, 0, 0.5),
@@ -23,7 +23,7 @@ const LinkCardRow = (props) => {
         <div className={styles.icons}>
           <Icons data={item.tags ? item.tags : []} />
         </div>
-      </div>
+      </a>
     </Link>
   );
 };

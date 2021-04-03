@@ -9,6 +9,15 @@
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
+.tags button {
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
+  outline: none;
+}
+.tags button:focus {
+  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(202deg)
+    brightness(119%) contrast(119%);
+}
 .tag {
   width: 120px;
   min-width: 70px;
@@ -23,6 +32,7 @@
   filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(212deg)
     brightness(119%) contrast(119%);
 }
+
 .tagSelected {
   width: 120px;
   min-width: 70px;

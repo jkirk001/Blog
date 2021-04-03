@@ -33,18 +33,36 @@ const chron = (props) => {
   }, [year, month]);
 
   const yearHandler = (e) => {
+    if (e.target.id === month) return;
     if (month) {
-      setMonth();
-      setYear(e.target.id);
+      set(false);
+      setTimeout(() => {
+        setMonth();
+        setYear(e.target.id);
+        set(true);
+      }, 700);
     }
-    setYear(e.target.id);
+    if (!month) {
+      set(false);
+      setTimeout(() => {
+        setYear(e.target.id);
+        set(true);
+      }, 700);
+    }
   };
   const monthHandler = (e) => {
-    setMonth(e.target.id);
+    if (e.target.id === month) return;
+    if (e.target.id !== month) {
+      set(false);
+      setTimeout(() => {
+        setMonth(e.target.id);
+        set(true);
+      }, 700);
+    }
   };
 
-  let content = <p>press a year</p>;
-  if (display) {
+  let content = <p>Nothing seems to be here :(</p>;
+  if (display && display.length) {
     content = display.map((item, index) => {
       return <LinkCardRow key={index} data={item} />;
     });

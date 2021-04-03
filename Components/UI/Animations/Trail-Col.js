@@ -12,21 +12,23 @@ function TrailCol({ open, children, ...props }) {
   });
   return (
     <div className="trails-main-col" {...props}>
-      {trail.map(({ x, height, ...rest }, index) => (
-        <a.div
-          key={items[index]}
-          className="trails-text-col"
-          style={{
-            ...rest,
-            //transform: x.interpolate((x) => `translate3d(0,${x}px,0)`),
-            transform: x.to((x) => `translate3d(0,${x}px,0)`),
-          }}
-        >
-          <a.div className="trails-main-col-cont" style={{ height }}>
-            {items[index]}
+      {trail.map(({ x, height, ...rest }, index) => {
+        return (
+          <a.div
+            key={items[index].key}
+            className="trails-text-col"
+            style={{
+              ...rest,
+              //transform: x.interpolate((x) => `translate3d(0,${x}px,0)`),
+              transform: x.to((x) => `translate3d(0,${x}px,0)`),
+            }}
+          >
+            <a.div className="trails-main-col-cont" style={{ height }}>
+              {items[index]}
+            </a.div>
           </a.div>
-        </a.div>
-      ))}
+        );
+      })}
     </div>
   );
 }

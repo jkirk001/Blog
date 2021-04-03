@@ -12,33 +12,34 @@
 }
 
 .yearRadio {
+  color: rgb(36, 35, 38);
   outline: none;
   padding: 10px;
-  border: 2px solid blue;
-  background-color: lightblue;
-  border-radius: 10px;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
   margin: 0 15px;
   cursor: pointer;
-  transition: 0.5s;
-  width: 60px;
-  height: 50px;
+  transition: color 0.5s ease, font-weight 0.5s ease;
+  font-size: 2rem;
+  will-change: color, letter-spacing, font-weight;
+  letter-spacing: 2px;
 }
 .yearRadio:hover {
-  transform: scale(1.1);
-  box-shadow: 0 2px 18px blue;
+  color: rgba(179, 110, 199, 0.55);
 }
-
+.yearRadio:focus {
+  color: rgba(179, 110, 199, 0.55);
+}
 .yearRadioSelected {
+  letter-spacing: 2px;
+  font-size: 2rem;
+  color: #2a6f97;
   outline: none;
   padding: 10px;
-  border: 2px solid rgb(255, 166, 0);
-  background-color: lightblue;
-  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
   margin: 0 15px;
   cursor: pointer;
-  transition: 0.5s;
-  width: 60px;
-  height: 50px;
 }
 
 .monthButtons {
@@ -46,32 +47,34 @@
   flex-wrap: wrap;
 }
 .monthButton {
+  color: rgb(36, 35, 38);
   outline: none;
-
-  border: 2px solid blue;
-  background-color: lightblue;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: transform 0.5s ease, color 0.5s ease;
+  will-change: transform, color;
+}
+.monthButton:hover {
+  transform: scale(1.1);
+  color: rgba(179, 110, 199, 0.55);
+}
+.monthButton:focus {
+  transform: scale(1.1);
+  color: rgba(179, 110, 199, 0.55);
+}
+.monthButtonSelected {
+  transform: scale(1.1);
+  color: #2a6f97;
+  outline: none;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
   border-radius: 10px;
   margin: 0 5px;
   cursor: pointer;
   transition: 0.5s;
-  width: 50px;
-  height: 40px;
-}
-.monthButton:hover {
-  transform: scale(1.1);
-  box-shadow: 0 2px 18px blue;
-}
-.monthButtonSelected {
-  outline: none;
-
-  border: 2px solid rgb(255, 166, 0);
-  background-color: lightblue;
-  border-radius: 10px;
-  margin: 0 15px;
-  cursor: pointer;
-  transition: 0.5s;
-  width: 50px;
-  height: 40px;
 }
 .contentContainer {
   width: 100%;

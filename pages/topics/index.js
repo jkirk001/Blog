@@ -5,12 +5,12 @@ import styles from "./topics.module.css";
 import { useEffect, useState } from "react";
 import LinkCardRow from "../../Components/UI/CardDisplay/LinkCardRow/LinkCardRow";
 import TrailCol from "../../Components/UI/Animations/Trail-Col";
-import InOutTransition from "../../Components/UI/Animations/in-out-transition";
 
 const Topics = (props) => {
   const [found, setFound] = useState();
   const [selected, setSelected] = useState();
   const [open, set] = useState(true);
+  const [timer, setTimer] = useState();
 
   useEffect(() => {
     if (selected === "react") {
@@ -20,6 +20,7 @@ const Topics = (props) => {
       setFound(display);
     }
     if (selected === "next") {
+      setFound(null);
       const display = props.posts.filter((item, index) => {
         return item.tags.includes("Next");
       });
@@ -52,13 +53,21 @@ const Topics = (props) => {
   }, [selected]);
 
   const techHandler = (e) => {
-    setSelected(e.target.id);
+    if (e.target.id === selected) return;
+    if (timer) clearTimeout(timer);
+    set(false);
+    let clickTimer = setTimeout(() => {
+      setSelected(e.target.id);
+      set(true);
+    }, 700);
+    setTimer(clickTimer);
   };
 
-  let display = null;
+  let itemDisplay = null;
   if (found) {
-    display = found.map((item, index) => {
-      return <LinkCardRow data={item} key={item._id} />;
+    itemDisplay = found.reverse().map((item, index) => {
+      //removed key for transition key={item._id}
+      return <LinkCardRow data={item} />;
     });
   }
 
@@ -66,46 +75,60 @@ const Topics = (props) => {
     <Layout>
       <div className={styles.topicsMain}>
         <div className={styles.tags}>
-          <img
-            id="react"
-            src="/devLogos/React.svg"
-            onClick={techHandler}
-            className={selected === "react" ? styles.tagSelected : styles.tag}
-          />
-          <img
-            id="next"
-            src="/devLogos/Next.svg"
-            onClick={techHandler}
-            className={selected === "next" ? styles.tagSelected : styles.tag}
-          />
-          <img
-            id="mongo"
-            src="/devLogos/Mongo.svg"
-            onClick={techHandler}
-            className={selected === "mongo" ? styles.tagSelected : styles.tag}
-          />
-          <img
-            id="js"
-            src="/devLogos/JS.svg"
-            onClick={techHandler}
-            className={selected === "js" ? styles.tagSelected : styles.tag}
-          />
-          <img
-            id="node"
-            src="/devLogos/Node.svg"
-            onClick={techHandler}
-            className={selected === "node" ? styles.tagSelected : styles.tag}
-          />
-          <img
-            id="express"
-            src="/devLogos/Express.svg"
-            onClick={techHandler}
-            className={selected === "express" ? styles.tagSelected : styles.tag}
-          />
+          <button>
+            <img
+              id="react"
+              src="/devLogos/React.svg"
+              onClick={techHandler}
+              className={selected === "react" ? styles.tagSelected : styles.tag}
+            />
+          </button>
+          <button>
+            <img
+              id="next"
+              src="/devLogos/Next.svg"
+              onClick={techHandler}
+              className={selected === "next" ? styles.tagSelected : styles.tag}
+            />
+          </button>
+          <button>
+            <img
+              id="mongo"
+              src="/devLogos/Mongo.svg"
+              onClick={techHandler}
+              className={selected === "mongo" ? styles.tagSelected : styles.tag}
+            />
+          </button>
+          <button>
+            <img
+              id="js"
+              src="/devLogos/JS.svg"
+              onClick={techHandler}
+              className={selected === "js" ? styles.tagSelected : styles.tag}
+            />
+          </button>
+          <button>
+            <img
+              id="node"
+              src="/devLogos/Node.svg"
+              onClick={techHandler}
+              className={selected === "node" ? styles.tagSelected : styles.tag}
+            />
+          </button>
+          <button>
+            <img
+              id="express"
+              src="/devLogos/Express.svg"
+              onClick={techHandler}
+              className={
+                selected === "express" ? styles.tagSelected : styles.tag
+              }
+            />
+          </button>
         </div>
         <div className={styles.display}>
           <TrailCol open={open} onClick={() => set((state) => !state)}>
-            {display}
+            {itemDisplay}
           </TrailCol>
         </div>
       </div>
@@ -128,6 +151,6 @@ export async function getStaticProps() {
 
 export default Topics;
 
-/*  <TrailCol open={open} onClick={() => set((state) => !state)}>
+/* <TrailCol open={open} onClick={() => set((state) => !state)}>
             {display}
           </TrailCol>*/
