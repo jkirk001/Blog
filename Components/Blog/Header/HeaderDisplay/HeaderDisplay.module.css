@@ -8,6 +8,7 @@
   justify-content: center;
   width: 100%;
   margin-bottom: 2rem;
+  align-items: center;
 }
 .info img {
   width: 100%;
