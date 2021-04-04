@@ -27,5 +27,6 @@ export async function getStaticProps() {
     revalidate: 100,
   };
 }
+//Testing new branch
 
 export default Home;
