@@ -5,7 +5,7 @@ import Icons from "../../Icons/Icons";
 const LinkCardRow = (props) => {
   const item = props.data;
   return (
-    <Link key={`${item._id}`} href={`${item._id}`}>
+    <Link key={`${item._id}`} href={`/${item._id}`}>
       <a
         style={{
           backgroundImage: `linear-gradient(

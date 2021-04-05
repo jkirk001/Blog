@@ -4,6 +4,7 @@ import PostBody from "../../../Components/Blog/PostBody/PostBody";
 import Layout from "../../../Components/Layout/Layout";
 import { ModeContext } from "../../../Context/context";
 import styles from "./singlePage.module.css";
+import post from "../../../utils/postData";
 
 const Check = (props) => {
   const mainContext = useContext(ModeContext);
@@ -32,10 +33,7 @@ const Check = (props) => {
   const finalSubmitHandler = async (e) => {
     e.preventDefault();
     let submitFinal = JSON.stringify(submit);
-    await fetch("http://localhost:3000/api/hello", {
-      method: "POST",
-      body: submitFinal,
-    });
+    await post(submitFinal);
     console.log("success");
   };
 

@@ -64,7 +64,7 @@ const Topics = (props) => {
 
   let itemDisplay = null;
   if (found) {
-    itemDisplay = found.reverse().map((item, index) => {
+    itemDisplay = found.map((item, index) => {
       //removed key for transition key={item._id}
       return <LinkCardRow data={item} />;
     });
@@ -127,7 +127,7 @@ const Topics = (props) => {
         </div>
         <div className={styles.display}>
           <TrailCol open={open} onClick={() => set((state) => !state)}>
-            {itemDisplay}
+            {itemDisplay ? itemDisplay.reverse() : null}
           </TrailCol>
         </div>
       </div>
@@ -137,10 +137,15 @@ const Topics = (props) => {
 
 export async function getStaticProps() {
   let finalPosts = await axios.get(
-    "https://evron-dev-blog-default-rtdb.firebaseio.com/posts/-MXOUrJ6usAbNAqgoio9.json"
+    "https://evron-dev-blog-default-rtdb.firebaseio.com/newPosts.json"
   );
-  console.log(finalPosts.data.object);
-  finalPosts = await JSON.parse(JSON.stringify(finalPosts.data.object));
+  //finalPosts = await JSON.parse(JSON.stringify(finalPosts.data.object));
+  finalPosts = Object.entries(finalPosts.data);
+  finalPosts = finalPosts.map((item, index) => {
+    item[1]._id = item[0];
+    item = item[1];
+    return item;
+  });
   return {
     props: {
       posts: finalPosts,
