@@ -35,14 +35,15 @@ export async function getStaticProps(context) {
   const { params } = context;
   const id = params.pid;
   let finalPosts = await axios.get(
-    "https://evron-dev-blog-default-rtdb.firebaseio.com/posts/-MXOUrJ6usAbNAqgoio9.json"
+    "https://evron-dev-blog-default-rtdb.firebaseio.com/newPosts.json"
   );
-  finalPosts = await JSON.parse(JSON.stringify(finalPosts.data.object));
+  //finalPosts = await JSON.parse(JSON.stringify(finalPosts.data.object));
+  finalPosts = Object.entries(finalPosts.data);
 
   const dataFinal = finalPosts.filter((item, index) => {
-    return item._id === id;
+    return item[0] === id;
   });
-
+  console.log(dataFinal[0][1]);
   if (dataFinal.length === 0) {
     return {
       notFound: true,
@@ -51,20 +52,22 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      post: dataFinal[0],
+      post: dataFinal[0][1],
     },
     notFound: false,
-    revalidate: 1,
+    revalidate: 100,
   };
 }
 
 export async function getStaticPaths() {
   let finalPosts = await axios.get(
-    "https://evron-dev-blog-default-rtdb.firebaseio.com/posts/-MXOUrJ6usAbNAqgoio9.json"
+    "https://evron-dev-blog-default-rtdb.firebaseio.com/newPosts.json"
   );
-  finalPosts = await JSON.parse(JSON.stringify(finalPosts.data.object));
+  //finalPosts = await JSON.parse(JSON.stringify(finalPosts.data));
+  finalPosts = Object.entries(finalPosts.data);
+
   const dynamicPaths = finalPosts.map((item, index) => {
-    return { params: { pid: item._id } };
+    return { params: { pid: item[0] } };
   });
 
   return {

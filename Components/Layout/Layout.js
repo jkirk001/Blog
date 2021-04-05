@@ -45,7 +45,7 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
       <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>
         <span>2021 &copy;</span>
-        <span>Something Else</span>
+        <span>The hows and whys</span>
       </footer>
     </div>
   );
