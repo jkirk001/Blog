@@ -8,6 +8,9 @@
   height: 100%;
   width: 100%;
 }
+.container h2 {
+  color: rgb(199, 193, 193);
+}
 .containerLight {
   display: flex;
   flex-direction: column;
@@ -34,7 +37,7 @@
   display: flex;
   justify-content: space-around;
 }
-.navLinks a {
+.Links {
   color: inherit;
 }
 .main {
@@ -54,4 +57,45 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.drawer {
+  background: url("/menu.svg") no-repeat;
+  width: 40px;
+  height: 40px;
+  display: none;
+}
+.modal {
+  width: 10000px;
+  height: 10000px;
+  position: fixed;
+  z-index: 50;
+  background: rgba(128, 128, 128, 0.509);
+}
+
+@media (max-width: 760px) {
+  .navLinks {
+    display: none;
+  }
+  .drawer {
+    display: inline;
+    position: relative;
+    z-index: 1000;
+  }
+
+  .drawerOpen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 100;
+    position: absolute;
+    right: 20px;
+    top: 80px;
+    width: 150px;
+    height: auto;
+    background-color: whitesmoke;
+  }
+  .drawerOpen a {
+    border-bottom: 1px solid rgb(138, 132, 132);
+    padding: 10px;
+  }
 }
