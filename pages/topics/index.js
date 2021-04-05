@@ -64,7 +64,7 @@ const Topics = (props) => {
 
   let itemDisplay = null;
   if (found) {
-    itemDisplay = found.reverse().map((item, index) => {
+    itemDisplay = found.map((item, index) => {
       //removed key for transition key={item._id}
       return <LinkCardRow data={item} />;
     });
@@ -127,7 +127,7 @@ const Topics = (props) => {
         </div>
         <div className={styles.display}>
           <TrailCol open={open} onClick={() => set((state) => !state)}>
-            {itemDisplay}
+            {itemDisplay ? itemDisplay.reverse() : null}
           </TrailCol>
         </div>
       </div>

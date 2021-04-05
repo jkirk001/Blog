@@ -12,7 +12,7 @@ function TrailCol({ open, children, ...props }) {
   });
   return (
     <div className="trails-main-col" {...props}>
-      {trail.map(({ x, height, ...rest }, index) => {
+      {trail.reverse().map(({ x, height, ...rest }, index) => {
         return (
           <a.div
             key={items[index].key}

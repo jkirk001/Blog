@@ -11,7 +11,7 @@ const allPosts = (props) => {
   return (
     <Layout>
       <h2>All Posts -- Newest To Oldest</h2>
-      <div className={styles.listAll}>{display}</div>
+      <div className={styles.listAll}>{display.reverse()}</div>
     </Layout>
   );
 };
