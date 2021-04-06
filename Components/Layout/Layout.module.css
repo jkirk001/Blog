@@ -44,7 +44,7 @@
   max-width: 1000px;
   width: 90%;
   min-height: 800px;
-
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,6 +64,7 @@
   width: 40px;
   height: 40px;
   display: none;
+  cursor: pointer;
 }
 .modal {
   width: 10000px;
@@ -92,12 +93,15 @@
     right: 20px;
     top: 80px;
     width: 150px;
-    height: auto;
+    height: fit-content;
+    border-radius: 5px;
     background-color: whitesmoke;
   }
   .drawerOpen a {
-    border-bottom: 1px solid rgb(138, 132, 132);
-    padding: 10px;
+    padding: 20px;
     color: grey;
+  }
+  .drawerOpen a:hover {
+    color: rgb(56, 86, 117);
   }
 }
