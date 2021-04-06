@@ -58,6 +58,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .drawer {
   background: url("/menu.svg") no-repeat;
   width: 40px;
@@ -97,5 +98,6 @@
   .drawerOpen a {
     border-bottom: 1px solid rgb(138, 132, 132);
     padding: 10px;
+    color: grey;
   }
 }

@@ -32,12 +32,14 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
       </Head>
 
       <header className={styles.navbar}>
-        <img onClick={mainContext.switch} src="/logo2.png" />
+        <Link href="/">
+          <a>
+            <img src="/logo2.png" />
+          </a>
+        </Link>
+
         <div className={styles.drawer} onClick={drawerClickHandler}></div>
         <div className={drawerOpen ? styles.drawerOpen : styles.navLinks}>
-          <Link href="/">
-            <a className={styles.Links}>Home</a>
-          </Link>
           <Link href="/allPosts">
             <a className={styles.Links}>All Posts</a>
           </Link>
@@ -55,7 +57,11 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
       <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>
         <span>2021 &copy;</span>
-        <span>The hows and whys</span>
+
+        <img
+          src={mainContext.lightMode ? "/sun.svg" : "/sunset.svg"}
+          onClick={mainContext.switch}
+        />
       </footer>
     </div>
   );
