@@ -1,17 +1,32 @@
 import styles from "./Layout.module.css";
 import Head from "next/head";
-import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ModeContext } from "../../Context/context";
+import Link from "next/link";
+import TrailCol from "../UI/Animations/Trail-Col";
 
 export default function Layout({ children, title = "Evron.dev :: Blog" }) {
   const mainContext = useContext(ModeContext);
   const [drawerOpen, setDrawer] = useState(false);
+  const [open, set] = useState(true);
 
-  const drawerClickHandler = () => {
+  const clickHandler = () => {
     setDrawer(!drawerOpen);
   };
 
+  const links = [
+    ["All Posts", "allPosts"],
+    ["Chronological", "chron"],
+    ["Topics", "topics"],
+    ["Post", "post"],
+  ];
+  const display = links.map((items, index) => {
+    return (
+      <Link href={`/${items[1]}`} key={index}>
+        <a className={styles.Links}>{items[0]}</a>
+      </Link>
+    );
+  });
   return (
     <div
       className={
@@ -38,21 +53,16 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
           </a>
         </Link>
 
-        <div className={styles.drawer} onClick={drawerClickHandler}></div>
-        <div className={drawerOpen ? styles.drawerOpen : styles.navLinks}>
-          <Link href="/allPosts">
-            <a className={styles.Links}>All Posts</a>
-          </Link>
-          <Link href="/chron">
-            <a className={styles.Links}>Chronological</a>
-          </Link>
-          <Link href="/topics">
-            <a className={styles.Links}>Topics</a>
-          </Link>
-          <Link href="/post">
-            <a className={styles.Links}>Post</a>
-          </Link>
-        </div>
+        <div className={styles.drawer} onClick={clickHandler}></div>
+        {drawerOpen ? (
+          <div className={styles.drawerOpen}>
+            <TrailCol open={open} onClick={() => set((state) => !state)}>
+              {display}
+            </TrailCol>
+          </div>
+        ) : (
+          <div className={styles.navLinks}>{display}</div>
+        )}
       </header>
       <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>
