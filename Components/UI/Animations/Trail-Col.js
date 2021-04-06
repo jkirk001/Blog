@@ -4,7 +4,7 @@ import React, { useState } from "react";
 function TrailCol({ open, children, ...props }) {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
-    config: { mass: 5, tension: 1500, friction: 150 },
+    config: { mass: 5, tension: 2500, friction: 150 },
     opacity: open ? 1 : 0,
     x: open ? 0 : 20,
     height: open ? "auto" : "auto",
