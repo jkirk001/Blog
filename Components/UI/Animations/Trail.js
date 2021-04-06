@@ -12,21 +12,21 @@ function Trail({ open, children, ...props }) {
   });
   return (
     <div className="trails-main" {...props}>
-      <div>
-        {trail.map(({ x, height, ...rest }, index) => (
-          <a.div
-            key={items[index].key}
-            className="trails-text"
-            style={{
-              ...rest,
-              //transform: x.interpolate((x) => `translate3d(0,${x}px,0)`),
-              transform: x.to((x) => `translate3d(0,${x}px,0)`),
-            }}
-          >
-            <a.div style={{ height }}>{items[index]}</a.div>
+      {trail.map(({ x, height, ...rest }, index) => (
+        <a.div
+          key={items[index].key}
+          className="trails-text"
+          style={{
+            ...rest,
+            //transform: x.interpolate((x) => `translate3d(0,${x}px,0)`),
+            transform: x.to((x) => `translate3d(0,${x}px,0)`),
+          }}
+        >
+          <a.div className="trails-main-cont" style={{ height }}>
+            {items[index]}
           </a.div>
-        ))}
-      </div>
+        </a.div>
+      ))}
     </div>
   );
 }
