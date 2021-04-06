@@ -104,4 +104,7 @@
   .drawerOpen a:hover {
     color: rgb(56, 86, 117);
   }
+  .main {
+    width: 100%;
+  }
 }

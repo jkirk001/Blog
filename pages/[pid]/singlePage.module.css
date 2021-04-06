@@ -3,3 +3,9 @@
   display: inherit;
   flex-direction: inherit;
 }
+
+@media (max-width: 760px) {
+  .singlePost {
+    width: 94%;
+  }
+}
