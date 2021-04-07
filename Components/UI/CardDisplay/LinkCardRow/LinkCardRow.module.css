@@ -24,7 +24,6 @@
 
 .recentInfo span {
   color: white;
-  font-family: "Roboto";
   font-size: 1.8rem;
   font-weight: bold;
   padding: 10px;
@@ -32,7 +31,6 @@
 }
 .recentInfo p {
   color: rgb(202, 206, 210);
-  font-family: "Roboto";
   font-size: 1.2rem;
   padding: 10px;
   margin-left: 10px;
