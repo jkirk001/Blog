@@ -2,8 +2,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Roboto", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Roboto";
+  /*font-family: "Roboto", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
   color: #2a6f97;
 }
 
@@ -15,6 +16,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
 .trails-main-col {
   width: 100%;
   display: flex;

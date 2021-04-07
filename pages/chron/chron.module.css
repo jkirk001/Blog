@@ -45,6 +45,7 @@
 .monthButtons {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .monthButton {
   color: rgb(36, 35, 38);
@@ -52,7 +53,7 @@
   border: 0;
   background-color: rgba(0, 0, 0, 0);
   border-radius: 10px;
-  margin: 0 5px;
+  margin: 5px 5px;
   cursor: pointer;
   transition: transform 0.5s ease, color 0.5s ease;
   will-change: transform, color;
@@ -83,4 +84,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+@media (max-width: 760px) {
+  .monthButtons {
+    width: 400px;
+  }
 }
