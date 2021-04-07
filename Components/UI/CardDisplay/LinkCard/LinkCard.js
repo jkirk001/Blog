@@ -6,16 +6,8 @@ const LinkCard = (props) => {
   const item = props.data;
   return (
     <Link key={`${item._id}`} href={`${item._id}`}>
-      <div
-        style={{
-          backgroundImage: `linear-gradient(
-              rgba(0, 0, 0, 0.5),
-              rgba(0, 0, 0, 0.5)
-            ),url(${item.mainImg ? item.mainImg : "test.jpg"})`,
-          backgroundSize: "cover",
-        }}
-        className={styles.recentArticle}
-      >
+      <div className={styles.recentArticle}>
+        <img src={item.mainImg} />
         <div className={styles.recentInfo}>
           <span>{item.title}</span>
           <p>{item.quip}</p>

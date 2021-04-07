@@ -13,9 +13,10 @@ const Display = (props) => {
   const quip = posts.quip;
   const mainImg = posts.mainImg;
   const body = posts.body;
+  const tagline = posts.tagline;
 
   let display = (
-    <Layout>
+    <Layout title={title} description={tagline}>
       <div className={styles.singlePost}>
         <HeaderDisplay
           author={author}

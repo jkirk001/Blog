@@ -6,6 +6,8 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="stylesheet" href="/fonts/fontStyle.css" />
+          <meta key="ogType" name="Chron_Search" content="website" />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
           <Main />

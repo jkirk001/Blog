@@ -38,7 +38,7 @@ const Check = (props) => {
   };
 
   return (
-    <Layout>
+    <Layout title="Check Private">
       <div className={styles.singlePost}>
         <HeaderDisplay
           author={submit.author}

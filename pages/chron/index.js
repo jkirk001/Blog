@@ -5,6 +5,7 @@ import LinkCardRow from "../../Components/UI/CardDisplay/LinkCardRow/LinkCardRow
 import insertionSort from "../../utils/insertionSort";
 import TrailCol from "../../Components/UI/Animations/Trail-Col";
 import axios from "axios";
+import Head from "next/head";
 
 const chron = (props) => {
   const [display, setDisplay] = useState();
@@ -97,7 +98,13 @@ const chron = (props) => {
     );
   });
   return (
-    <Layout>
+    <Layout
+      title="Chronological Search"
+      description="Search through all Evron.dev posts by date"
+    >
+      <Head>
+        <meta key="ogType" name="Chron_Search" content="Chronological Search" />
+      </Head>
       <section className={styles.dateSection}>
         <div className={styles.yearButtons}>
           <button

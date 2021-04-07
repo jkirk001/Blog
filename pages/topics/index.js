@@ -71,7 +71,10 @@ const Topics = (props) => {
   }
 
   return (
-    <Layout>
+    <Layout
+      title="Topical Search"
+      description="Search through all Evron.dev posts by topic"
+    >
       <div className={styles.topicsMain}>
         <div className={styles.tags}>
           <button>
@@ -80,6 +83,7 @@ const Topics = (props) => {
               src="/devLogos/React.svg"
               onClick={techHandler}
               className={selected === "react" ? styles.tagSelected : styles.tag}
+              alt="React logo press to show all react apps"
             />
           </button>
           <button>
@@ -88,6 +92,7 @@ const Topics = (props) => {
               src="/devLogos/Next.svg"
               onClick={techHandler}
               className={selected === "next" ? styles.tagSelected : styles.tag}
+              alt="Next logo press to show all next apps"
             />
           </button>
           <button>
@@ -96,6 +101,7 @@ const Topics = (props) => {
               src="/devLogos/Mongo.svg"
               onClick={techHandler}
               className={selected === "mongo" ? styles.tagSelected : styles.tag}
+              alt="Mongo logo press to show all mongo apps"
             />
           </button>
           <button>
@@ -104,6 +110,7 @@ const Topics = (props) => {
               src="/devLogos/JS.svg"
               onClick={techHandler}
               className={selected === "js" ? styles.tagSelected : styles.tag}
+              alt="Javacript logo press to show all javascript apps"
             />
           </button>
           <button>
@@ -112,6 +119,7 @@ const Topics = (props) => {
               src="/devLogos/Node.svg"
               onClick={techHandler}
               className={selected === "node" ? styles.tagSelected : styles.tag}
+              alt="Node logo press to show all node apps"
             />
           </button>
           <button>
@@ -122,6 +130,7 @@ const Topics = (props) => {
               className={
                 selected === "express" ? styles.tagSelected : styles.tag
               }
+              alt="Express logo press to show all express apps"
             />
           </button>
         </div>

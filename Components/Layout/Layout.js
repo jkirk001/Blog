@@ -5,7 +5,11 @@ import { ModeContext } from "../../Context/context";
 import Link from "next/link";
 import TrailCol from "../UI/Animations/Trail-Col";
 
-export default function Layout({ children, title = "Evron.dev :: Blog" }) {
+export default function Layout({
+  children,
+  title = "Blog",
+  description = "A blog about web-dev with fresh perspective, come check it out",
+}) {
   const mainContext = useContext(ModeContext);
   const [drawerOpen, setDrawer] = useState(false);
   const [open, set] = useState(true);
@@ -37,8 +41,8 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
         <div className={styles.modal} onClick={() => setDrawer(false)}></div>
       ) : null}
       <Head>
-        <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Evron: {title}</title>
+        <meta name="description" content={description} />
       </Head>
 
       <header className={styles.navbar}>
