@@ -1,7 +1,6 @@
 .recentArticle {
   width: 100%;
   height: 200px;
-  background-color: cyan;
   cursor: pointer;
   border-radius: 3px;
   transition: box-shadow 0.5s ease;
