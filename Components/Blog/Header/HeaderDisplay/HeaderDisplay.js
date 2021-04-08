@@ -2,7 +2,6 @@ import { Fragment } from "react";
 import Icons from "../Icons/icons";
 import Author from "../Author/Author";
 import styles from "./HeaderDisplay.module.css";
-import Image from "next/image";
 
 const Header = (props) => {
   const { author, title, mainImg, tags, img600, img300 } = props;
@@ -21,6 +20,8 @@ const Header = (props) => {
             (min-width:901px) 900px"
           src={mainImg}
           alt="Elva dressed as a fairy"
+          height="600"
+          width="900"
         />
       </div>
     </Fragment>

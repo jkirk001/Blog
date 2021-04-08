@@ -14,6 +14,8 @@ const LinkCard = (props) => {
              (max-width: 900px) 600px,
             (min-width:901px) 900px"
           alt="Test"
+          height="200"
+          width="400"
         />
         <div className={styles.recentInfo}>
           <span>{item.title}</span>

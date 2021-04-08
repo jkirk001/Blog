@@ -48,7 +48,7 @@ export default function Layout({
       <header className={styles.navbar}>
         <Link href="/">
           <a>
-            <img src="/logo2.png" />
+            <img src="/logo2.png" height="100" width="163" />
           </a>
         </Link>
 
@@ -70,6 +70,8 @@ export default function Layout({
         <img
           src={mainContext.lightMode ? "/sun.svg" : "/sunset.svg"}
           onClick={mainContext.switch}
+          width="24"
+          height="24"
         />
       </footer>
     </div>
