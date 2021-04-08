@@ -2,20 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #444444;
-  color: whitesmoke;
+  background-color: #494d5f;
+  color: #e5eaf5;
   min-height: 100vh;
   height: 100%;
   width: 100%;
 }
 .container h2 {
-  color: rgb(199, 193, 193);
+  color: inherit;
 }
 .containerLight {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(229, 226, 226);
+  background-color: #eefbfb;
   min-height: 100vh;
   height: 100%;
   width: 100%;
