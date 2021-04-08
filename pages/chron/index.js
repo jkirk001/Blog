@@ -92,6 +92,7 @@ const chron = (props) => {
         id={index}
         onClick={monthHandler}
         key={index}
+        aria-label={`View ${item} for year ${year}`}
       >
         {item}
       </button>
@@ -114,6 +115,7 @@ const chron = (props) => {
             type="radio"
             id="2021"
             onClick={yearHandler}
+            aria-label="Press to see posts from 2021"
           >
             2021
           </button>
@@ -124,6 +126,7 @@ const chron = (props) => {
             }
             id="2020"
             onClick={yearHandler}
+            aria-label="Press to see posts from 2020"
           >
             2020
           </button>
