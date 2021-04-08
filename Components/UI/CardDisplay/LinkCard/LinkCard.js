@@ -7,7 +7,15 @@ const LinkCard = (props) => {
   return (
     <Link key={`${item._id}`} href={`${item._id}`}>
       <div className={styles.recentArticle}>
-        <img src={item.mainImg} />
+        <img
+          srcSet={`${item.mainImg} 900w, ${item.img600} 600w, ${item.img300} 300w,
+             `}
+          sizes="(max-width: 600px) 300px,
+             (max-width: 900px) 600px,
+            (min-width:901px) 900px"
+          src={item.mainImg}
+          alt="Test"
+        />
         <div className={styles.recentInfo}>
           <span>{item.title}</span>
           <p>{item.quip}</p>
