@@ -6,14 +6,17 @@ const LinkCard = (props) => {
   const item = props.data;
   return (
     <Link key={`${item._id}`} href={`${item._id}`}>
-      <div className={styles.recentArticle}>
+      <a
+        className={styles.recentArticle}
+        aria-label={`Press to read ${item.title}`}
+      >
         <img
           srcSet={`${item.mainImg} 900w, ${item.img600} 600w, ${item.img300} 300w,
              `}
           sizes="(max-width: 600px) 300px,
              (max-width: 900px) 600px,
             (min-width:901px) 900px"
-          alt="Test"
+          alt={item.mainImgAlt}
           height="200"
           width="400"
         />
@@ -24,7 +27,7 @@ const LinkCard = (props) => {
         <div className={styles.icons}>
           <Icons data={item.tags ? item.tags : []} />
         </div>
-      </div>
+      </a>
     </Link>
   );
 };

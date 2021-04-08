@@ -9,6 +9,7 @@ const Icons = (props) => {
         src={`/devLogos/${item}.svg`}
         width="50"
         height="50"
+        alt={`click to show ${item} articles`}
       />
     );
   });

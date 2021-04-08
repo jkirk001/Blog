@@ -27,7 +27,9 @@ export default function Layout({
   const display = links.map((items, index) => {
     return (
       <Link href={`/${items[1]}`} key={index}>
-        <a className={styles.Links}>{items[0]}</a>
+        <a className={styles.Links} aria-label={items[0]}>
+          {items[0]}{" "}
+        </a>
       </Link>
     );
   });
@@ -48,7 +50,13 @@ export default function Layout({
       <header className={styles.navbar}>
         <Link href="/">
           <a>
-            <img src="/logo2.png" height="100" width="163" />
+            <img
+              src="/logo2.png"
+              height="100"
+              width="163"
+              alt="Evron.dev logo"
+              aria-label="Evron.Dev Home"
+            />
           </a>
         </Link>
 
@@ -72,6 +80,16 @@ export default function Layout({
           onClick={mainContext.switch}
           width="24"
           height="24"
+          alt={
+            mainContext.lightMode
+              ? "light mode icon sun"
+              : "Dark mode icon sunset"
+          }
+          aria-label={
+            mainContext.lightMode
+              ? "light mode icon sun"
+              : "Dark mode icon sunset"
+          }
         />
       </footer>
     </div>

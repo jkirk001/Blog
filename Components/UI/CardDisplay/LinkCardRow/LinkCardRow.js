@@ -15,6 +15,7 @@ const LinkCardRow = (props) => {
           backgroundSize: "cover",
         }}
         className={styles.recentArticle}
+        aria-label={`Press to read ${item.title}`}
       >
         <div className={styles.recentInfo}>
           <span>{item.title}</span>

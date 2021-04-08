@@ -2,7 +2,7 @@ import styles from "./SearchResults.module.css";
 import Link from "next/link";
 
 const SearchResults = (props) => {
-  let results = <p>Search for something</p>;
+  let results = <li>Search for something</li>;
   if (props.results.length) {
     results = props.results.map((item, index) => {
       return (

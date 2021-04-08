@@ -19,7 +19,7 @@ const PostBody = (props) => {
     }
 
     if (item.type === "img") {
-      return <img key={index} src={`${item.content}`} />;
+      return <img key={index} src={`${item.content}`} alt={item.alt} />;
     }
     if (item.type === "sub") {
       return <h2 key={index}>{item.content}</h2>;

@@ -16,6 +16,7 @@ const Display = (props) => {
   const tagline = posts.tagline;
   const img600 = posts.img600;
   const img300 = posts.img300;
+  const mainImgAlt = posts.mainImgAlt;
 
   let display = (
     <Layout title={title} description={tagline}>
@@ -27,6 +28,7 @@ const Display = (props) => {
           mainImg={mainImg}
           img600={img600}
           img300={img300}
+          mainImgAlt={mainImgAlt}
         />
         <PostBody body={body} quip={quip} />
       </div>

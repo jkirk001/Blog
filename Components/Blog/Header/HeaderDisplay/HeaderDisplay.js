@@ -4,7 +4,7 @@ import Author from "../Author/Author";
 import styles from "./HeaderDisplay.module.css";
 
 const Header = (props) => {
-  const { author, title, mainImg, tags, img600, img300 } = props;
+  const { author, title, mainImg, tags, img600, img300, mainImgAlt } = props;
 
   return (
     <Fragment>
@@ -19,7 +19,7 @@ const Header = (props) => {
              (max-width: 900px) 600px,
             (min-width:901px) 900px"
           src={mainImg}
-          alt="Elva dressed as a fairy"
+          alt={mainImgAlt}
           height="600"
           width="900"
         />

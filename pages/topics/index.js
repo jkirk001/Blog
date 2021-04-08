@@ -84,6 +84,7 @@ const Topics = (props) => {
               onClick={techHandler}
               className={selected === "react" ? styles.tagSelected : styles.tag}
               alt="React logo press to show all react apps"
+              aria-label="React logo press to show all react apps"
             />
           </button>
           <button>
@@ -93,6 +94,7 @@ const Topics = (props) => {
               onClick={techHandler}
               className={selected === "next" ? styles.tagSelected : styles.tag}
               alt="Next logo press to show all next apps"
+              aria-label="Next logo press to show all next apps"
             />
           </button>
           <button>
@@ -102,6 +104,7 @@ const Topics = (props) => {
               onClick={techHandler}
               className={selected === "mongo" ? styles.tagSelected : styles.tag}
               alt="Mongo logo press to show all mongo apps"
+              aria-label="Mongo logo press to show all mongo apps"
             />
           </button>
           <button>
@@ -111,6 +114,7 @@ const Topics = (props) => {
               onClick={techHandler}
               className={selected === "js" ? styles.tagSelected : styles.tag}
               alt="Javacript logo press to show all javascript apps"
+              aria-label="Javacript logo press to show all javascript apps"
             />
           </button>
           <button>
@@ -120,6 +124,7 @@ const Topics = (props) => {
               onClick={techHandler}
               className={selected === "node" ? styles.tagSelected : styles.tag}
               alt="Node logo press to show all node apps"
+              aria-label="Node logo press to show all node apps"
             />
           </button>
           <button>
@@ -131,6 +136,7 @@ const Topics = (props) => {
                 selected === "express" ? styles.tagSelected : styles.tag
               }
               alt="Express logo press to show all express apps"
+              aria-label="Express logo press to show all express apps"
             />
           </button>
         </div>

@@ -7,6 +7,7 @@
   margin: 10px 20px;
   box-shadow: 0 1px 4px black;
   display: flex;
+  will-change: box-shadow;
 }
 .recentArticle:hover {
   box-shadow: 0 2px 8px black;
