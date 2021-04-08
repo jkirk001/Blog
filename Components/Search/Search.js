@@ -16,9 +16,9 @@ const Search = (props) => {
     const timer = setTimeout(() => {
       const searchResultFinal = props.data.filter((item, index) => {
         let re = new RegExp(`\\b(${searchInput.toLowerCase()})\\b`);
-        console.log(re, item.title);
+
         const found = item.title.toLowerCase().search(re);
-        console.log(found);
+
         if (found === -1) return false;
         return true;
       });

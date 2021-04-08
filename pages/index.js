@@ -26,7 +26,7 @@ export async function getStaticProps() {
     item = item[1];
     return item;
   });
-  console.log(finalPosts);
+
   return {
     props: {
       posts: finalPosts,

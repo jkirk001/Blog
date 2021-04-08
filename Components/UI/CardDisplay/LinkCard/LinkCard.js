@@ -13,7 +13,6 @@ const LinkCard = (props) => {
           sizes="(max-width: 600px) 300px,
              (max-width: 900px) 600px,
             (min-width:901px) 900px"
-          src={item.mainImg}
           alt="Test"
         />
         <div className={styles.recentInfo}>

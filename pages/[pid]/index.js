@@ -48,7 +48,6 @@ export async function getStaticProps(context) {
   const dataFinal = finalPosts.filter((item, index) => {
     return item[0] === id;
   });
-  console.log(dataFinal[0][1]);
   if (dataFinal.length === 0) {
     return {
       notFound: true,

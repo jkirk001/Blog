@@ -11,7 +11,7 @@ const LinkCardRow = (props) => {
           backgroundImage: `linear-gradient(
               rgba(0, 0, 0, 0.5),
               rgba(0, 0, 0, 0.5)
-            ),url(${item.mainImg ? item.mainImg : "test.jpg"})`,
+            ),url(${item.img300})`,
           backgroundSize: "cover",
         }}
         className={styles.recentArticle}

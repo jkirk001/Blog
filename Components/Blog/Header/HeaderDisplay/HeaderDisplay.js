@@ -6,7 +6,6 @@ import Image from "next/image";
 
 const Header = (props) => {
   const { author, title, mainImg, tags, img600, img300 } = props;
-  console.log(img300);
 
   return (
     <Fragment>
