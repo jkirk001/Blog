@@ -7,7 +7,7 @@ const Author = (props) => {
         <strong> Jon Evron</strong>
       </span>
       <span>
-        <strong>3/22/2021</strong>
+        <time>3/22/2021</time>
       </span>
     </div>
   );
