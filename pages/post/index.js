@@ -78,7 +78,7 @@ const Post = (props) => {
     setNumTags(e.target.value);
   };
 
-  const radioHandler = (e) => {
+  const checkboxHandler = (e) => {
     if (e.target.checked) {
       setSubmitObj((prevState) => {
         prevState.tags = [...prevState.tags, e.target.value];
@@ -164,37 +164,43 @@ const Post = (props) => {
               type="checkbox"
               value="React"
               id="react"
-              onChange={radioHandler}
+              onChange={checkboxHandler}
             />
             <label htmlFor="next">Next</label>
             <input
               type="checkbox"
               value="Next"
               id="next"
-              onChange={radioHandler}
+              onChange={checkboxHandler}
             />
             <label htmlFor="node">Node</label>
             <input
               type="checkbox"
               value="Node"
               id="node"
-              onChange={radioHandler}
+              onChange={checkboxHandler}
             />
             <label htmlFor="js">JS</label>
-            <input type="checkbox" value="JS" id="js" onChange={radioHandler} />
-            <label htmlFor="express">Express</label>
             <input
               type="checkbox"
-              value="Express"
-              id="express"
-              onChange={radioHandler}
+              value="JS"
+              id="js"
+              onChange={checkboxHandler}
             />
-            <label htmlFor="mongo">Mongo</label>
+
+            <label htmlFor="html5">Html5</label>
             <input
               type="checkbox"
-              value="Mongo"
-              id="mongo"
-              onChange={radioHandler}
+              value="Html5"
+              id="html5"
+              onChange={checkboxHandler}
+            />
+            <label htmlFor="css3">Css3</label>
+            <input
+              type="checkbox"
+              value="Css3"
+              id="css3"
+              onChange={checkboxHandler}
             />
           </div>
           <div>

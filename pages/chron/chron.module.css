@@ -89,3 +89,9 @@
     width: 400px;
   }
 }
+
+@media (max-width: 400px) {
+  .monthButtons {
+    width: 300px;
+  }
+}
