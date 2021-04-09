@@ -51,7 +51,9 @@ export default function Layout({
         <Link href="/">
           <a>
             <img
-              src="/logo2.png"
+              src={
+                !mainContext.lightMode ? "/logoNew.png" : "/newLogoDarkMode.png"
+              }
               height="100"
               width="163"
               alt="Evron.dev logo"
