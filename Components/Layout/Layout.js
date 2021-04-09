@@ -28,7 +28,7 @@ export default function Layout({
     return (
       <Link href={`/${items[1]}`} key={index}>
         <a className={styles.Links} aria-label={items[0]}>
-          {items[0]}{" "}
+          {items[0]}
         </a>
       </Link>
     );
@@ -62,7 +62,7 @@ export default function Layout({
           </a>
         </Link>
 
-        <div className={styles.drawer} onClick={clickHandler}></div>
+        <nav className={styles.drawer} onClick={clickHandler}></nav>
         {drawerOpen ? (
           <div className={styles.drawerOpen}>
             <TrailCol open={open} onClick={() => set((state) => !state)}>
@@ -75,7 +75,7 @@ export default function Layout({
       </header>
       <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>
-        <span>2021 &copy;</span>
+        <small aria-label="Copyright 2021">2021 &copy;</small>
 
         <img
           src={mainContext.lightMode ? "/sun.svg" : "/sunset.svg"}

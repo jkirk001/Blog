@@ -20,7 +20,7 @@ const Display = (props) => {
 
   let display = (
     <Layout title={title} description={tagline}>
-      <div className={styles.singlePost}>
+      <article className={styles.singlePost}>
         <HeaderDisplay
           author={author}
           title={title}
@@ -31,7 +31,7 @@ const Display = (props) => {
           mainImgAlt={mainImgAlt}
         />
         <PostBody body={body} quip={quip} />
-      </div>
+      </article>
     </Layout>
   );
 
