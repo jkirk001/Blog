@@ -1,11 +1,12 @@
 import styles from "./Search.module.css";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import SearchResults from "./SearchResults/SearchResults";
 
 const Search = (props) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [searchTimeout, setSearchTimeout] = useState(0);
+  const [open, set] = useState(false);
 
   useEffect(() => {
     if (searchTimeout) {
@@ -28,21 +29,43 @@ const Search = (props) => {
     return () => clearTimeout(timer);
   }, [searchInput]);
 
+  const searchHandler = (e) => {
+    e.preventDefault();
+    set(!open);
+  };
+
   return (
     <section className={styles.search}>
       <h2>Search</h2>
-      <form className={styles.searchForm} onSubmit={(e) => e.preventDefault()}>
-        <input
-          type="text"
-          className={styles.searchInput}
-          placeholder="search for a post..."
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          height="45"
-          width="340"
-        />
+      <form>
+        <button className={styles.openClose} onClick={searchHandler}>
+          <img
+            src={props.lightMode ? "/LightSearch.svg" : "/DarkSearch.svg"}
+            style={{ cursor: "pointer" }}
+            alt={`magnifying glass - ${open ? "close" : "open"} search box`}
+            aria-label={`Press to ${open ? "close" : "open"} search box`}
+          />
+        </button>
       </form>
-      <SearchResults results={searchResult} />
+      {open ? (
+        <Fragment>
+          <form
+            className={styles.searchForm}
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <input
+              type="text"
+              className={styles.searchInput}
+              placeholder="search for a post..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              height="45"
+              width="340"
+            />
+          </form>
+          <SearchResults results={searchResult} />
+        </Fragment>
+      ) : null}
     </section>
   );
 };

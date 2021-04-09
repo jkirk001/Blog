@@ -6,11 +6,11 @@ import { ModeContext } from "../Context/context";
 import axios from "axios";
 
 const Home = (props) => {
-  //const { data } = useContext(ModeContext);
+  const mainContext = useContext(ModeContext);
   return (
     <Layout>
+      <Search data={props.posts} lightMode={mainContext.lightMode} />
       <Recent data={props.posts} />
-      <Search data={props.posts} />
     </Layout>
   );
 };
