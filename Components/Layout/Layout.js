@@ -5,7 +5,11 @@ import { ModeContext } from "../../Context/context";
 import Link from "next/link";
 import TrailCol from "../UI/Animations/Trail-Col";
 
-export default function Layout({ children, title = "Evron.dev :: Blog" }) {
+export default function Layout({
+  children,
+  title = "Blog",
+  description = "A blog about web-dev with fresh perspective, come check it out",
+}) {
   const mainContext = useContext(ModeContext);
   const [drawerOpen, setDrawer] = useState(false);
   const [open, set] = useState(true);
@@ -23,7 +27,9 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
   const display = links.map((items, index) => {
     return (
       <Link href={`/${items[1]}`} key={index}>
-        <a className={styles.Links}>{items[0]}</a>
+        <a className={styles.Links} aria-label={items[0]}>
+          {items[0]}
+        </a>
       </Link>
     );
   });
@@ -37,18 +43,26 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
         <div className={styles.modal} onClick={() => setDrawer(false)}></div>
       ) : null}
       <Head>
-        <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Evron: {title}</title>
+        <meta name="description" content={description} />
       </Head>
 
       <header className={styles.navbar}>
         <Link href="/">
           <a>
-            <img src="/logo2.png" />
+            <img
+              src={
+                !mainContext.lightMode ? "/logoNew.png" : "/newLogoDarkMode.png"
+              }
+              height="100"
+              width="163"
+              alt="Evron.dev logo"
+              aria-label="Evron.Dev Home"
+            />
           </a>
         </Link>
 
-        <div className={styles.drawer} onClick={clickHandler}></div>
+        <nav className={styles.drawer} onClick={clickHandler}></nav>
         {drawerOpen ? (
           <div className={styles.drawerOpen}>
             <TrailCol open={open} onClick={() => set((state) => !state)}>
@@ -61,11 +75,23 @@ export default function Layout({ children, title = "Evron.dev :: Blog" }) {
       </header>
       <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>
-        <span>2021 &copy;</span>
+        <small aria-label="Copyright 2021">2021 &copy;</small>
 
         <img
           src={mainContext.lightMode ? "/sun.svg" : "/sunset.svg"}
           onClick={mainContext.switch}
+          width="24"
+          height="24"
+          alt={
+            mainContext.lightMode
+              ? "light mode icon sun"
+              : "Dark mode icon sunset"
+          }
+          aria-label={
+            mainContext.lightMode
+              ? "light mode icon sun"
+              : "Dark mode icon sunset"
+          }
         />
       </footer>
     </div>

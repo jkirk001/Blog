@@ -12,7 +12,6 @@
 }
 
 .yearRadio {
-  color: rgb(36, 35, 38);
   outline: none;
   padding: 10px;
   border: 0;
@@ -48,7 +47,6 @@
   justify-content: center;
 }
 .monthButton {
-  color: rgb(36, 35, 38);
   outline: none;
   border: 0;
   background-color: rgba(0, 0, 0, 0);

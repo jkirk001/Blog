@@ -6,16 +6,20 @@ const LinkCard = (props) => {
   const item = props.data;
   return (
     <Link key={`${item._id}`} href={`${item._id}`}>
-      <div
-        style={{
-          backgroundImage: `linear-gradient(
-              rgba(0, 0, 0, 0.5),
-              rgba(0, 0, 0, 0.5)
-            ),url(${item.mainImg ? item.mainImg : "test.jpg"})`,
-          backgroundSize: "cover",
-        }}
+      <a
         className={styles.recentArticle}
+        aria-label={`Press to read ${item.title}`}
       >
+        <img
+          srcSet={`${item.mainImg} 900w, ${item.img600} 600w, ${item.img300} 300w,
+             `}
+          sizes="(max-width: 600px) 300px,
+             (max-width: 900px) 600px,
+            (min-width:901px) 900px"
+          alt={item.mainImgAlt}
+          height="200"
+          width="400"
+        />
         <div className={styles.recentInfo}>
           <span>{item.title}</span>
           <p>{item.quip}</p>
@@ -23,7 +27,7 @@ const LinkCard = (props) => {
         <div className={styles.icons}>
           <Icons data={item.tags ? item.tags : []} />
         </div>
-      </div>
+      </a>
     </Link>
   );
 };

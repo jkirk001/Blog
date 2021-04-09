@@ -13,18 +13,25 @@ const Display = (props) => {
   const quip = posts.quip;
   const mainImg = posts.mainImg;
   const body = posts.body;
+  const tagline = posts.tagline;
+  const img600 = posts.img600;
+  const img300 = posts.img300;
+  const mainImgAlt = posts.mainImgAlt;
 
   let display = (
-    <Layout>
-      <div className={styles.singlePost}>
+    <Layout title={title} description={tagline}>
+      <article className={styles.singlePost}>
         <HeaderDisplay
           author={author}
           title={title}
           tags={tags}
           mainImg={mainImg}
+          img600={img600}
+          img300={img300}
+          mainImgAlt={mainImgAlt}
         />
         <PostBody body={body} quip={quip} />
-      </div>
+      </article>
     </Layout>
   );
 
@@ -43,7 +50,6 @@ export async function getStaticProps(context) {
   const dataFinal = finalPosts.filter((item, index) => {
     return item[0] === id;
   });
-  console.log(dataFinal[0][1]);
   if (dataFinal.length === 0) {
     return {
       notFound: true,

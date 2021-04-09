@@ -9,7 +9,10 @@ const allPosts = (props) => {
     return <LinkCardRow key={item._id} data={item} />;
   });
   return (
-    <Layout>
+    <Layout
+      title="All Posts"
+      description="View all Evron.dev posts on one page!"
+    >
       <h2>All Posts -- Newest To Oldest</h2>
       <div className={styles.listAll}>{display.reverse()}</div>
     </Layout>

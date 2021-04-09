@@ -119,7 +119,7 @@ const Post = (props) => {
   }
 
   return (
-    <Layout>
+    <Layout title="Post Private">
       <div className={styles.postContainer}>
         <form onSubmit={submitHandler} className={styles.form}>
           <label htmlFor="title">Author </label>

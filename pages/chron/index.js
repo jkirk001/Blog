@@ -5,6 +5,7 @@ import LinkCardRow from "../../Components/UI/CardDisplay/LinkCardRow/LinkCardRow
 import insertionSort from "../../utils/insertionSort";
 import TrailCol from "../../Components/UI/Animations/Trail-Col";
 import axios from "axios";
+import Head from "next/head";
 
 const chron = (props) => {
   const [display, setDisplay] = useState();
@@ -91,15 +92,22 @@ const chron = (props) => {
         id={index}
         onClick={monthHandler}
         key={index}
+        aria-label={`View ${item} for year ${year}`}
       >
         {item}
       </button>
     );
   });
   return (
-    <Layout>
+    <Layout
+      title="Chronological Search"
+      description="Search through all Evron.dev posts by date"
+    >
+      <Head>
+        <meta key="ogType" name="Chron_Search" content="Chronological Search" />
+      </Head>
       <section className={styles.dateSection}>
-        <div className={styles.yearButtons}>
+        <nav className={styles.yearButtons}>
           <button
             className={
               year === "2021" ? styles.yearRadioSelected : styles.yearRadio
@@ -107,6 +115,7 @@ const chron = (props) => {
             type="radio"
             id="2021"
             onClick={yearHandler}
+            aria-label="Press to see posts from 2021"
           >
             2021
           </button>
@@ -117,11 +126,12 @@ const chron = (props) => {
             }
             id="2020"
             onClick={yearHandler}
+            aria-label="Press to see posts from 2020"
           >
             2020
           </button>
-        </div>
-        <div className={styles.monthButtons}>{year ? monthButton : null}</div>
+        </nav>
+        <nav className={styles.monthButtons}>{year ? monthButton : null}</nav>
       </section>
       <section className={styles.contentContainer}>
         <TrailCol open={open} onClick={() => set((state) => !state)}>
