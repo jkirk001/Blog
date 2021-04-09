@@ -29,7 +29,7 @@ const Search = (props) => {
   }, [searchInput]);
 
   return (
-    <div className={styles.search}>
+    <section className={styles.search}>
       <h2>Search</h2>
       <form className={styles.searchForm} onSubmit={(e) => e.preventDefault()}>
         <input
@@ -38,10 +38,12 @@ const Search = (props) => {
           placeholder="search for a post..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
+          height="45"
+          width="340"
         />
       </form>
       <SearchResults results={searchResult} />
-    </div>
+    </section>
   );
 };
 
