@@ -22,7 +22,6 @@ export default function Layout({
     ["All Posts", "allPosts"],
     ["Chronological", "chron"],
     ["Topics", "topics"],
-    ["Post", "post"],
   ];
   const display = links.map((items, index) => {
     return (

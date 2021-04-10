@@ -52,7 +52,7 @@ const Login = () => {
         localStorage.setItem(process.env.cookie, res.data.localId);
         localStorage.setItem("cookieId", res.data.idToken);
         localStorage.setItem("cookieRefresh", res.data.refreshToken);
-        router.push("/post/postArticle");
+        return router.push("/post/postArticle");
       })
       .catch((error) => {
         displayHandler();
