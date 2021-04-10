@@ -34,7 +34,6 @@ const Check = (props) => {
     e.preventDefault();
     let submitFinal = JSON.stringify(submit);
     await post(submitFinal);
-    console.log("success");
   };
 
   return (
