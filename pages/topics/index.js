@@ -100,11 +100,11 @@ const Topics = (props) => {
           <button>
             <img
               id="css3"
-              src="/devLogos/css3.svg"
+              src="/devLogos/Css3.svg"
               onClick={techHandler}
               className={selected === "css3" ? styles.tagSelected : styles.tag}
               alt="Css3 logo press to show all mongo articless"
-              aria-label="Mongo logo press to show all mongo articless"
+              aria-label="Css3 logo press to show all mongo articless"
             />
           </button>
           <button>
@@ -130,7 +130,7 @@ const Topics = (props) => {
           <button>
             <img
               id="html5"
-              src="/devLogos/html5.svg"
+              src="/devLogos/Html5.svg"
               onClick={techHandler}
               className={selected === "html5" ? styles.tagSelected : styles.tag}
               alt="Html5 logo press to show all express articless"
