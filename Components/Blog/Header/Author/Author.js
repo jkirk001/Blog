@@ -1,13 +1,19 @@
 import styles from "./Author.module.css";
 
 const Author = (props) => {
+  const author = props.data;
+
+  const displayDate = new Date(author.date);
+
   return (
     <div className={styles.authorInfo}>
       <span>
-        <strong> Jon Evron</strong>
+        <strong>
+          {author.name === "Jon" ? "Jon Evron" : "Michael Castilla"}
+        </strong>
       </span>
       <span>
-        <time>3/22/2021</time>
+        <time>{displayDate.toLocaleDateString("en-US")}</time>
       </span>
     </div>
   );

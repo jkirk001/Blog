@@ -13,22 +13,9 @@ const Recent = (props) => {
   if (data) {
     array = insertionSort(data);
     array = array.slice(array.length - 3, array.length).reverse();
-  } else {
-    array = [{ title: "Next" }, { title: "Pingu" }, { title: "22222" }];
   }
 
   const display = array.map((item, index) => {
-    const testImages = [
-      "test.jpg",
-      "serverSide.jpg",
-      "js.jpg",
-      "react.jpg",
-      "setup.jpg",
-    ];
-    let testImage = `/postImages/${
-      testImages[Math.floor(Math.random() * testImages.length)]
-    }`;
-
     return <LinkCard data={item} key={item._id} />;
   });
 

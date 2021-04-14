@@ -75,7 +75,7 @@ const Topics = (props) => {
       title="Topical Search"
       description="Search through all Evron.dev posts by topic"
     >
-      <div className={styles.topicsMain}>
+      <section className={styles.topicsMain}>
         <div className={styles.tags}>
           <button>
             <img
@@ -83,8 +83,8 @@ const Topics = (props) => {
               src="/devLogos/React.svg"
               onClick={techHandler}
               className={selected === "react" ? styles.tagSelected : styles.tag}
-              alt="React logo press to show all react apps"
-              aria-label="React logo press to show all react apps"
+              alt="React logo press to show all react articles"
+              aria-label="React logo press to show all react articles"
             />
           </button>
           <button>
@@ -93,18 +93,18 @@ const Topics = (props) => {
               src="/devLogos/Next.svg"
               onClick={techHandler}
               className={selected === "next" ? styles.tagSelected : styles.tag}
-              alt="Next logo press to show all next apps"
-              aria-label="Next logo press to show all next apps"
+              alt="Next logo press to show all next articless"
+              aria-label="Next logo press to show all next articless"
             />
           </button>
           <button>
             <img
-              id="mongo"
-              src="/devLogos/Mongo.svg"
+              id="css3"
+              src="/devLogos/css3.svg"
               onClick={techHandler}
-              className={selected === "mongo" ? styles.tagSelected : styles.tag}
-              alt="Mongo logo press to show all mongo apps"
-              aria-label="Mongo logo press to show all mongo apps"
+              className={selected === "css3" ? styles.tagSelected : styles.tag}
+              alt="Css3 logo press to show all mongo articless"
+              aria-label="Mongo logo press to show all mongo articless"
             />
           </button>
           <button>
@@ -113,8 +113,8 @@ const Topics = (props) => {
               src="/devLogos/JS.svg"
               onClick={techHandler}
               className={selected === "js" ? styles.tagSelected : styles.tag}
-              alt="Javacript logo press to show all javascript apps"
-              aria-label="Javacript logo press to show all javascript apps"
+              alt="Javacript logo press to show all javascript articless"
+              aria-label="Javacript logo press to show all javascript articless"
             />
           </button>
           <button>
@@ -123,20 +123,18 @@ const Topics = (props) => {
               src="/devLogos/Node.svg"
               onClick={techHandler}
               className={selected === "node" ? styles.tagSelected : styles.tag}
-              alt="Node logo press to show all node apps"
-              aria-label="Node logo press to show all node apps"
+              alt="Node logo press to show all node articless"
+              aria-label="Node logo press to show all node articless"
             />
           </button>
           <button>
             <img
-              id="express"
-              src="/devLogos/Express.svg"
+              id="html5"
+              src="/devLogos/html5.svg"
               onClick={techHandler}
-              className={
-                selected === "express" ? styles.tagSelected : styles.tag
-              }
-              alt="Express logo press to show all express apps"
-              aria-label="Express logo press to show all express apps"
+              className={selected === "html5" ? styles.tagSelected : styles.tag}
+              alt="Html5 logo press to show all express articless"
+              aria-label="Html5 logo press to show all express articless"
             />
           </button>
         </div>
@@ -145,7 +143,7 @@ const Topics = (props) => {
             {itemDisplay ? itemDisplay.reverse() : null}
           </TrailCol>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 };

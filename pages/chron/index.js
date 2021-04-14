@@ -107,7 +107,7 @@ const chron = (props) => {
         <meta key="ogType" name="Chron_Search" content="Chronological Search" />
       </Head>
       <section className={styles.dateSection}>
-        <nav className={styles.yearButtons}>
+        <div className={styles.yearButtons}>
           <button
             className={
               year === "2021" ? styles.yearRadioSelected : styles.yearRadio
@@ -130,8 +130,8 @@ const chron = (props) => {
           >
             2020
           </button>
-        </nav>
-        <nav className={styles.monthButtons}>{year ? monthButton : null}</nav>
+        </div>
+        <div className={styles.monthButtons}>{year ? monthButton : null}</div>
       </section>
       <section className={styles.contentContainer}>
         <TrailCol open={open} onClick={() => set((state) => !state)}>
