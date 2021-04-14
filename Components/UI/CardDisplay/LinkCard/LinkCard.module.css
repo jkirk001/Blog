@@ -6,6 +6,7 @@
   transition: box-shadow 0.5s ease;
   margin: 10px 20px;
   box-shadow: 0 1px 4px black;
+  background-color: black;
   display: flex;
   will-change: box-shadow;
 }
@@ -15,8 +16,9 @@
 .recentArticle img {
   display: block;
   width: 100%;
-  object-fit: cover; /* or object-fit: contain; */
+  object-fit: cover;
   border-radius: 3px;
+  opacity: 0.5;
 }
 .recentInfo {
   width: 70%;

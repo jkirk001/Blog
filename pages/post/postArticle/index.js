@@ -48,7 +48,7 @@ const Post = (props) => {
     e.preventDefault();
     const almostFinal = [];
     let group = 0;
-    for (let i = 12; i < e.target.length - 1; i++) {
+    for (let i = 16; i < e.target.length - 1; i++) {
       if (i % 2 === 0) {
         almostFinal.push({ type: e.target[i].value });
       }
@@ -61,6 +61,7 @@ const Post = (props) => {
       ...submitObj,
       body: almostFinal,
     };
+    console.log(final);
     setFinal(final);
   };
 
@@ -87,6 +88,30 @@ const Post = (props) => {
     if (e.target.id === "mainImg") {
       setSubmitObj((prevState) => {
         let state = { ...prevState, mainImg: e.target.value };
+        return state;
+      });
+    }
+    if (e.target.id === "mainImgAlt") {
+      setSubmitObj((prevState) => {
+        let state = { ...prevState, mainImgAlt: e.target.value };
+        return state;
+      });
+    }
+    if (e.target.id === "img300") {
+      setSubmitObj((prevState) => {
+        let state = { ...prevState, img300: e.target.value };
+        return state;
+      });
+    }
+    if (e.target.id === "img600") {
+      setSubmitObj((prevState) => {
+        let state = { ...prevState, img600: e.target.value };
+        return state;
+      });
+    }
+    if (e.target.id === "tagline") {
+      setSubmitObj((prevState) => {
+        let state = { ...prevState, tagline: e.target.value };
         return state;
       });
     }
@@ -171,6 +196,38 @@ const Post = (props) => {
             type="text"
             placeholder="mainImg"
             value={submitObj.mainImg}
+            onChange={mainInputCHangehandler}
+          ></input>
+          <label htmlFor="mainImg">Main Img Alt Text</label>
+          <input
+            id="mainImgAlt"
+            type="text"
+            placeholder="mainImgAlt"
+            value={submitObj.mainImgAlt}
+            onChange={mainInputCHangehandler}
+          ></input>
+          <label htmlFor="img600 ">img600</label>
+          <input
+            id="img600"
+            type="text"
+            placeholder="img600"
+            value={submitObj.img600}
+            onChange={mainInputCHangehandler}
+          ></input>
+          <label htmlFor="img300">img300</label>
+          <input
+            id="img300"
+            type="text"
+            placeholder="img300"
+            value={submitObj.img300}
+            onChange={mainInputCHangehandler}
+          ></input>
+          <label htmlFor="tagline">tagline</label>
+          <input
+            id="tagline"
+            type="text"
+            placeholder="tagline"
+            value={submitObj.tagline}
             onChange={mainInputCHangehandler}
           ></input>
           {/* Hidden array used to even out loop */}

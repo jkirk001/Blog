@@ -1,16 +1,5 @@
-.displayResults {
-  padding: 0px;
-}
-
-.displayResults li {
-  list-style: none;
-}
-
-.searchResults {
-  background: red;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-.searchResult {
-  font-size: 2rem;
+.display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
