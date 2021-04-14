@@ -2,6 +2,7 @@ import styles from "./Icons.module.css";
 
 const Icons = (props) => {
   const icons = props.data.map((item, index) => {
+    console.log(item);
     return (
       <img
         className={styles.img}
