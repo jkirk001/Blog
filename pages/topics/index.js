@@ -25,9 +25,9 @@ const Topics = (props) => {
       });
       setFound(display);
     }
-    if (selected === "mongo") {
+    if (selected === "css3") {
       const display = props.posts.filter((item, index) => {
-        return item.tags.includes("Mongo");
+        return item.tags.includes("Css3");
       });
       setFound(display);
     }
@@ -43,9 +43,9 @@ const Topics = (props) => {
       });
       setFound(display);
     }
-    if (selected === "express") {
+    if (selected === "html5") {
       const display = props.posts.filter((item, index) => {
-        return item.tags.includes("Express");
+        return item.tags.includes("Html5");
       });
       setFound(display);
     }

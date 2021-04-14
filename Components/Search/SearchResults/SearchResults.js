@@ -1,19 +1,13 @@
 import styles from "./SearchResults.module.css";
-import Link from "next/link";
+import LinkCardRow from "../../UI/CardDisplay/LinkCardRow/LinkCardRow";
 
 const SearchResults = (props) => {
   let results = <li>Search for something</li>;
   if (props.results.length) {
     results = props.results.map((item, index) => {
-      return (
-        <li className={styles.searchResults} key={item._id}>
-          <Link href={`/${item._id}`}>
-            <a className={styles.searchResult}>{item.title}</a>
-          </Link>
-        </li>
-      );
+      return <LinkCardRow data={item} key={item._id} />;
     });
   }
-  return <ul className={styles.displayResults}>{results}</ul>;
+  return <div className={styles.display}>{results}</div>;
 };
 export default SearchResults;
